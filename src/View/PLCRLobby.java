@@ -227,6 +227,7 @@ public class PLCRLobby extends javax.swing.JFrame {
 
     private void ConfigurarForm()
     {
+        this.setTitle("Pagina Principal");
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 

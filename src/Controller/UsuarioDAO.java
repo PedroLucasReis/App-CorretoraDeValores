@@ -138,4 +138,46 @@ public class UsuarioDAO {
         }
  
     }
+    
+    
+    public List<Usuario> confere(){
+        try {
+            String SQL = "select * from tb_user";
+            cmd = con.prepareStatement(SQL);
+            
+            //executar a consulta
+            List<Usuario> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()){
+                Usuario emp = new Usuario();
+                emp.setNome(rs.getString("nome"));
+                emp.setEmail(rs.getString("email"));
+                emp.setCpf("");
+                emp.setTelefone(rs.getString("telefone"));
+                emp.setData(rs.getString("saldo"));
+                emp.setSenha("");
+                emp.setSaldo(0);
+                lista.add(emp);
+            }
+            if(lista.size()>=1)
+            {
+                return lista;
+            }
+            else
+            {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("ERRO: " + e.getMessage());
+            return null;
+        }finally{
+            Conect.desconectar(con);
+        }
+    }
+
+    
+       
+    
+    
 }

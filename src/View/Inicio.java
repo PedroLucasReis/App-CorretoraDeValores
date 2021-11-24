@@ -4,7 +4,10 @@
  */
 package View;
 
+import Controller.UsuarioDAO;
+import Model.Usuario;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.BorderFactory;
 
 /**
@@ -17,10 +20,13 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     public Inicio() {
+        
         this.setUndecorated(true);
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        
     }
 
     /**
@@ -44,7 +50,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlInicio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pedro\\Desktop\\Projeto\\BDV\\src\\main\\java\\Imagem\\logo.png")); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/logo.png"))); // NOI18N
         lblLogo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblLogin.setFont(new java.awt.Font("Game Of Squids", 0, 36)); // NOI18N
@@ -66,7 +72,7 @@ public class Inicio extends javax.swing.JFrame {
 
         lblRegister.setFont(new java.awt.Font("Game Of Squids", 0, 36)); // NOI18N
         lblRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRegister.setText("REGISTER");
+        lblRegister.setText("REGISTRAR");
         lblRegister.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
         lblRegister.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,6 +88,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/CLOSE-131994911256789607.png"))); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
@@ -105,9 +112,9 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(pnlInicioLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                            .addComponent(lblRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(82, Short.MAX_VALUE))
+                        .addContainerGap(72, Short.MAX_VALUE))
                     .addGroup(pnlInicioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,15 +179,36 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCloseMouseExited
 
     private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-        FormLogin lgn = new FormLogin();
-        lgn.setVisible(true);
-        this.dispose();
+        int i = confereCadastro(new UsuarioDAO().confere());
+        if(i == 0)
+        {
+            FormCadastrarUsuario cad = new FormCadastrarUsuario(1);
+            cad.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            FormLogin lgn = new FormLogin();
+            lgn.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_lblLoginMouseClicked
 
     private void lblRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegisterMouseClicked
-       FormCadastrarUsuario cad = new FormCadastrarUsuario();
-       cad.setVisible(true);
-       this.dispose();
+       int i = confereCadastro(new UsuarioDAO().confere());
+        if(i == 0)
+        {
+            FormCadastrarUsuario cad = new FormCadastrarUsuario(1);
+            cad.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            FormCadastrarUsuario cad = new FormCadastrarUsuario();
+            cad.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_lblRegisterMouseClicked
 
     /**
@@ -214,6 +242,7 @@ public class Inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicio().setVisible(true);
+                
             }
         });
     }
@@ -225,4 +254,18 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblRegister;
     private javax.swing.JPanel pnlInicio;
     // End of variables declaration//GEN-END:variables
+
+    private int confereCadastro(List<Usuario> list)
+    {
+       
+        if (list == null)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+        
+    }
 }

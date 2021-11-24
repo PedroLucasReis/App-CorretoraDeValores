@@ -24,7 +24,13 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
     public FormCadastrarUsuario() {
         this.setUndecorated(true);
         initComponents();
-        configurarForm();
+        configurarForm(0);
+    }
+    
+    public FormCadastrarUsuario(int tip) {
+        this.setUndecorated(true);
+        initComponents();
+        configurarForm(tip);
     }
 
     /**
@@ -50,7 +56,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
         txtData = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         txtTelefone = new javax.swing.JFormattedTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblPossui = new javax.swing.JLabel();
         lblClique = new javax.swing.JLabel();
         pnlConfirmar = new javax.swing.JPanel();
         lblConfirmar = new javax.swing.JLabel();
@@ -66,9 +72,10 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
         pnlFundo.setBackground(new java.awt.Color(255, 255, 255));
         pnlFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
 
-        lblRegister.setFont(new java.awt.Font("Game Of Squids", 0, 48)); // NOI18N
+        lblRegister.setFont(new java.awt.Font("Game Of Squids", 0, 36)); // NOI18N
         lblRegister.setForeground(new java.awt.Color(204, 153, 0));
-        lblRegister.setText("REGISTER");
+        lblRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRegister.setText("REGISTRAR");
 
         pnlNome.setBackground(new java.awt.Color(255, 255, 255));
         pnlNome.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2), "NOME COMPLETO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Game Of Squids", 0, 18))); // NOI18N
@@ -205,8 +212,8 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Corbel Light", 0, 18)); // NOI18N
-        jLabel2.setText("Já possui um cadastro?");
+        lblPossui.setFont(new java.awt.Font("Corbel Light", 0, 18)); // NOI18N
+        lblPossui.setText("Já possui um cadastro?");
 
         lblClique.setFont(new java.awt.Font("Corbel Light", 0, 18)); // NOI18N
         lblClique.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -273,7 +280,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
         );
 
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblClose.setIcon(new javax.swing.ImageIcon("J:\\Pedro\\Faculdade\\4° Semestre\\Lab 4\\Prova Final\\PLCR\\imagens\\CLOSE-131994911256789607.png")); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/CLOSE-131994911256789607.png"))); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
@@ -338,30 +345,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
         pnlFundoLayout.setHorizontalGroup(
             pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFundoLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlFundoLayout.createSequentialGroup()
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFundoLayout.createSequentialGroup()
-                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(173, 173, 173)
-                                .addComponent(lblRegister)
-                                .addGap(110, 110, 110)
-                                .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblClique, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(159, 159, 159)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlFundoLayout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(pnlConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlFundoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,7 +359,29 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(pnlSenhaConf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(lblRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlFundoLayout.createSequentialGroup()
+                        .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblPossui)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblClique, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(pnlConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlFundoLayout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(lblAlerta, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 45, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlFundoLayout.setVerticalGroup(
@@ -405,9 +411,9 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(pnlFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblPossui)
                     .addComponent(lblClique, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -420,9 +426,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlFundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -518,13 +522,13 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAlerta;
     private javax.swing.JLabel lblClique;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblConfirmar;
+    private javax.swing.JLabel lblPossui;
     private javax.swing.JLabel lblRegister;
     private javax.swing.JPanel pnlCPF;
     private javax.swing.JPanel pnlConfirmar;
@@ -545,11 +549,17 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
-    private void configurarForm()
+    private void configurarForm(int tip2)
     {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         lblAlerta.setVisible(false);
+        if(tip2==1)
+        {
+            lblRegister.setText("PRIMEIRO REGISTRO");
+            lblPossui.setVisible(false);
+            lblClique.setVisible(false);
+        }
     }
 
     private void confirmar()
