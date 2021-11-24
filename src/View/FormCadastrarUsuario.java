@@ -640,7 +640,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
                     int resul = dao.inserir(us);
                     
                     if (resul >= 1){
-                        PLCRLobby ent = new PLCRLobby(us.getCpf());
+                        PLCRLobby ent = new PLCRLobby(us.getCpf(), us.getSenha());
                         ent.setVisible(true);
                         this.dispose();
                     }else{

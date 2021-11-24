@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.UsuarioDAO;
+import Model.Usuario;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
@@ -21,10 +23,12 @@ public class PLCRLobby extends javax.swing.JFrame {
         ConfigurarForm();
     }
     
-    public PLCRLobby(String cpf) {
+    public PLCRLobby(String cpf, String senha) {
         initComponents();
-        ConfigurarForm();
+        ConfigurarForm(cpf, senha);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,8 +41,8 @@ public class PLCRLobby extends javax.swing.JFrame {
 
         AreaTrabalho = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblSaldo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenuWeg = new javax.swing.JMenuItem();
@@ -58,11 +62,11 @@ public class PLCRLobby extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2), "PERFIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Game Of Squids", 0, 14))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
-        jLabel1.setText("Nome: Pedro Lucas Correia dos Reis");
+        lblNome.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
+        lblNome.setText("NOME: Pedro Lucas Correia dos Reis");
 
-        jLabel3.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
-        jLabel3.setText("SALDO: R$");
+        lblSaldo.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
+        lblSaldo.setText("SALDO: R$");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,16 +74,16 @@ public class PLCRLobby extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblSaldo)
                 .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel1)
-                .addComponent(jLabel3))
+                .addComponent(lblNome)
+                .addComponent(lblSaldo))
         );
 
         AreaTrabalho.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -201,8 +205,6 @@ public class PLCRLobby extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane AreaTrabalho;
     private javax.swing.JMenuItem MenuWeg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -213,6 +215,8 @@ public class PLCRLobby extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSaldo;
     // End of variables declaration//GEN-END:variables
 
     private void abrirForm(JInternalFrame f){
@@ -229,6 +233,16 @@ public class PLCRLobby extends javax.swing.JFrame {
     {
         this.setTitle("Pagina Principal");
         this.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    private void ConfigurarForm(String cpf, String senha)
+    {
+        this.setTitle("Pagina Principal");
+        this.setExtendedState(MAXIMIZED_BOTH);
+        UsuarioDAO us = new UsuarioDAO();
+        Usuario user = us.pesquisarCpfSenha(cpf, senha);
+        lblNome.setText("NOME: " + user.getNome());
+        lblSaldo.setText("SALDO: R$" + user.getSaldo());
     }
 
 

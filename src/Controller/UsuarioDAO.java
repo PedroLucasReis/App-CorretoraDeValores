@@ -112,7 +112,7 @@ public class UsuarioDAO {
     public Usuario pesquisarCpfSenha(String cpf, String senha){
         try {
             String SQL="select * from tb_user where "
-                + "cpf=? and senha=md5(?)";
+                + "cpf=md5(?) and senha=md5(?)";
 
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, cpf);
@@ -120,16 +120,20 @@ public class UsuarioDAO {
 
 
             ResultSet rs = cmd.executeQuery();
+            if (rs.next()){
+                Usuario us = new Usuario();
+                us.setNome(rs.getString("nome"));
+                us.setEmail(rs.getString("email"));
+                us.setCpf(cpf);
+                us.setTelefone(rs.getString("telefone"));
+                us.setData(rs.getString("date_nasc"));
+                us.setSenha(senha);
+                us.setSaldo(rs.getFloat("saldo"));
+                return us;
+            }else{
+                return null;
+            }
             
-            Usuario us = new Usuario();
-            us.setNome(rs.getString("nome"));
-            us.setEmail(rs.getString("email"));
-            us.setCpf(cpf);
-            us.setTelefone(rs.getString("telefone"));
-            us.setData(rs.getString("date_nasc"));
-            us.setSenha(senha);
-            us.setSaldo(rs.getFloat("saldo"));
-            return us;
             
 
         } catch (Exception e) {

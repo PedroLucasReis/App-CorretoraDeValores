@@ -123,6 +123,7 @@ public class FormLogin extends javax.swing.JFrame {
         });
 
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/CLOSE-131994911256789607.png"))); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
@@ -394,7 +395,7 @@ public class FormLogin extends javax.swing.JFrame {
             if (new UsuarioDAO().login(u.getCpf(), u.getSenha())){
                 
                 //login realizado com sucesso!
-                PLCRLobby ent = new PLCRLobby(u.getCpf());
+                PLCRLobby ent = new PLCRLobby(u.getCpf(), u.getSenha());
                 ent.setVisible(true);
                 this.dispose();
                 
