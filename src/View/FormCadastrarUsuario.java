@@ -5,7 +5,9 @@
  */
 package View;
 
+import Controller.EmpresaDAO;
 import Controller.UsuarioDAO;
+import Model.Empresa;
 import Model.Usuario;
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -640,6 +642,30 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
                     int resul = dao.inserir(us);
                     
                     if (resul >= 1){
+                        Empresa emp;
+                        EmpresaDAO empdao = new EmpresaDAO();
+                        emp = empdao.encontrarId(1);
+                        if(emp==null)
+                        {
+                            //valores do dia 24/11/2021
+                            double valor;
+                            valor = 33.54;
+                            emp = new Empresa(1, "WEG", valor);
+                            EmpresaDAO empdao1 = new EmpresaDAO();
+                            empdao1.inserir(emp);
+                            valor = 23.04;
+                            emp = new Empresa(2, "ITAU", valor);
+                            EmpresaDAO empdao2 = new EmpresaDAO();
+                            empdao2.inserir(emp);
+                            valor = 70.98;
+                            emp = new Empresa(3, "VALE", valor);
+                            EmpresaDAO empdao3 = new EmpresaDAO();
+                            empdao3.inserir(emp);
+                            valor = 17.10;
+                            emp = new Empresa(4, "AMBEV", valor);
+                            EmpresaDAO empdao4 = new EmpresaDAO();
+                            empdao4.inserir(emp);
+                        }
                         PLCRLobby ent = new PLCRLobby(us.getCpf(), us.getSenha());
                         ent.setVisible(true);
                         this.dispose();

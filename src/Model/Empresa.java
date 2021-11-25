@@ -4,8 +4,20 @@ package Model;
 public class Empresa {
     private int id;
     private String nome;
-    private float valor;
+    private double valor;
 
+    public Empresa()
+    {
+        
+    }
+    
+    public Empresa(int id, String nome, double valor)
+    {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
+    }
+    
     public int getId() {
         return id;
     }
@@ -22,11 +34,11 @@ public class Empresa {
         this.nome = nome;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
     

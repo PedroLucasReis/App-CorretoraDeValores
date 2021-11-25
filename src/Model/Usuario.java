@@ -9,13 +9,30 @@ public class Usuario {
     private String telefone;
     private String data;
     private String senha;
-    private float saldo;
+    private double saldo;
 
-    public float getSaldo() {
+    public Usuario()
+    {
+        
+    }
+    
+    public Usuario(String nome, String email, String cpf, String telefone, String data, String senha, float saldo)
+    {
+        
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.data = data;
+        this.senha = senha;
+        this.saldo = saldo;
+    }
+    
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

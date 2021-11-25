@@ -126,9 +126,9 @@ public class UsuarioDAO {
                 us.setEmail(rs.getString("email"));
                 us.setCpf(cpf);
                 us.setTelefone(rs.getString("telefone"));
-                us.setData(rs.getString("date_nasc"));
+                us.setData(rs.getString("data_nasc"));
                 us.setSenha(senha);
-                us.setSaldo(rs.getFloat("saldo"));
+                us.setSaldo(rs.getDouble("saldo"));
                 return us;
             }else{
                 return null;
@@ -158,7 +158,7 @@ public class UsuarioDAO {
                 emp.setEmail(rs.getString("email"));
                 emp.setCpf("");
                 emp.setTelefone(rs.getString("telefone"));
-                emp.setData(rs.getString("saldo"));
+                emp.setData(rs.getString("data_nasc"));
                 emp.setSenha("");
                 emp.setSaldo(0);
                 lista.add(emp);
