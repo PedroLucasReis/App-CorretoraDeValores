@@ -4,7 +4,14 @@
  */
 package View;
 
+import Controller.EmpresaDAO;
+import Controller.PropriedadeDAO;
+import Controller.UsuarioDAO;
+import Model.Empresa;
+import Model.Propriedade;
+import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,17 +19,22 @@ import static java.awt.Frame.MAXIMIZED_BOTH;
  */
 public class FormOpcoes extends javax.swing.JInternalFrame {
 
+    int id, op;
+    double vt;
+    PLCRLobby pp;
+    Empresa atu;
     /**
      * Creates new form FormOpcoes
      */
     public FormOpcoes() {
         initComponents();
-        ConfigurarForm();
+        ConfigurarForm(0);
     }
 
-    FormOpcoes(int i) {
+    public FormOpcoes(int i, PLCRLobby back) {
         initComponents();
-        ConfigurarForm();
+        ConfigurarForm(i);
+        pp = back;
     }
 
     /**
@@ -45,11 +57,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         lblQuantidade = new javax.swing.JLabel();
         spnQuantidade = new javax.swing.JSpinner();
         pnlValorTotal = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblValorTotal = new javax.swing.JLabel();
         lblValorTotalNum = new javax.swing.JLabel();
         pnlSenha = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
         pnlFinalizar = new javax.swing.JPanel();
         lblFinalizar = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -57,23 +69,33 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlGeral.setBackground(new java.awt.Color(255, 255, 255));
         pnlGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
 
-        lblNomeAcao.setFont(new java.awt.Font("Game Of Squids", 0, 24)); // NOI18N
+        lblNomeAcao.setFont(new java.awt.Font("Game Of Squids", 0, 36)); // NOI18N
         lblNomeAcao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNomeAcao.setText("NOME");
 
         tbdMercadoNegociar.setBackground(new java.awt.Color(255, 255, 255));
         tbdMercadoNegociar.setToolTipText("");
         tbdMercadoNegociar.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
+        tbdMercadoNegociar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbdMercadoNegociarMouseClicked(evt);
+            }
+        });
 
         pnlMercado.setBackground(new java.awt.Color(255, 255, 255));
         pnlMercado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
 
         lblValorAtual.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
         lblValorAtual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValorAtual.setText("VALOR ATUAL:");
+        lblValorAtual.setText("VALOR POR UNIDADE:");
 
         tglTipo.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
         tglTipo.setText("TIPO");
+        tglTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tglTipoActionPerformed(evt);
+            }
+        });
 
         pnlInfo.setBackground(new java.awt.Color(255, 255, 255));
         pnlInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -97,53 +119,53 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlQuantidadeLayout.setHorizontalGroup(
             pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
                 .addGroup(pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblQuantidade)
                     .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlQuantidadeLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(lblQuantidade)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         pnlQuantidadeLayout.setVerticalGroup(
             pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(lblQuantidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pnlValorTotal.setBackground(new java.awt.Color(255, 255, 255));
         pnlValorTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel4.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
-        jLabel4.setText("VALOR TOTAL");
+        lblValorTotal.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
+        lblValorTotal.setText("VALOR TOTAL");
 
         lblValorTotalNum.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
         lblValorTotalNum.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValorTotalNum.setText("R$:");
+        lblValorTotalNum.setText("R$: 0");
 
         javax.swing.GroupLayout pnlValorTotalLayout = new javax.swing.GroupLayout(pnlValorTotal);
         pnlValorTotal.setLayout(pnlValorTotalLayout);
         pnlValorTotalLayout.setHorizontalGroup(
             pnlValorTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlValorTotalLayout.createSequentialGroup()
-                .addGroup(pnlValorTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlValorTotalLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblValorTotalNum, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlValorTotalLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlValorTotalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblValorTotal)
+                .addGap(76, 76, 76))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlValorTotalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblValorTotalNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlValorTotalLayout.setVerticalGroup(
             pnlValorTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlValorTotalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
+                .addGap(31, 31, 31)
+                .addComponent(lblValorTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblValorTotalNum, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -161,32 +183,54 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlSenhaLayout.setHorizontalGroup(
             pnlSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSenhaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnlSenhaLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(pnlSenhaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtSenha)
+                .addContainerGap())
         );
         pnlSenhaLayout.setVerticalGroup(
             pnlSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSenhaLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlFinalizar.setBackground(new java.awt.Color(255, 255, 255));
         pnlFinalizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
         pnlFinalizar.setForeground(new java.awt.Color(255, 255, 255));
+        pnlFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlFinalizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlFinalizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlFinalizarMouseExited(evt);
+            }
+        });
 
         lblFinalizar.setFont(new java.awt.Font("Game Of Squids", 0, 24)); // NOI18N
         lblFinalizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFinalizar.setText("FINALIZAR");
         lblFinalizar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFinalizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblFinalizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblFinalizarMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFinalizarLayout = new javax.swing.GroupLayout(pnlFinalizar);
         pnlFinalizar.setLayout(pnlFinalizarLayout);
@@ -212,25 +256,25 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(pnlInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlInfoLayout.setVerticalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(pnlSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
                 .addComponent(pnlFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout pnlMercadoLayout = new javax.swing.GroupLayout(pnlMercado);
@@ -240,18 +284,16 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(pnlMercadoLayout.createSequentialGroup()
                 .addGroup(pnlMercadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMercadoLayout.createSequentialGroup()
-                        .addGroup(pnlMercadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlMercadoLayout.createSequentialGroup()
-                                .addGap(211, 211, 211)
-                                .addComponent(lblValorAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlMercadoLayout.createSequentialGroup()
-                                .addGap(270, 270, 270)
-                                .addComponent(tglTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 260, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMercadoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblValorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(pnlMercadoLayout.createSequentialGroup()
+                .addGap(293, 293, 293)
+                .addComponent(tglTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlMercadoLayout.setVerticalGroup(
             pnlMercadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,11 +313,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 730, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 305, Short.MAX_VALUE)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
 
         tbdMercadoNegociar.addTab("NEGOCIAR", jPanel3);
@@ -318,7 +360,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         quant = Integer.parseInt(spnQuantidade.getValue().toString());
         if(quant>0)
         {
-            lblValorTotalNum.setText("R$: 20,00");
+            double valor;
+            valor = quant * atu.getValor();
+            vt = valor;
+            lblValorTotalNum.setText("R$: " + valor);
         }
         else if(quant==0)
         {
@@ -326,15 +371,62 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_spnQuantidadeStateChanged
 
+    private void tbdMercadoNegociarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbdMercadoNegociarMouseClicked
+            Empresa emp;
+            emp = new EmpresaDAO().encontrarId(id);
+            lblNomeAcao.setText(emp.getNome());
+            lblValorAtual.setText("VALOR POR UNIDADE: R$" + emp.getValor());
+            atu = emp;
+    }//GEN-LAST:event_tbdMercadoNegociarMouseClicked
+
+    private void tglTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglTipoActionPerformed
+        if(op==0)
+        {
+            op=1;
+            tglTipo.setText("VENDER");
+            Operacao(1);
+        }
+        else
+        {
+            op=0;
+            tglTipo.setText("COMPRAR");
+            Operacao(0);
+        }
+    }//GEN-LAST:event_tglTipoActionPerformed
+
+    private void pnlFinalizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizarMouseEntered
+       mouse(0);
+    }//GEN-LAST:event_pnlFinalizarMouseEntered
+
+    private void pnlFinalizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizarMouseExited
+        mouse(1);
+    }//GEN-LAST:event_pnlFinalizarMouseExited
+
+    private void pnlFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizarMouseClicked
+        confirm();
+    }//GEN-LAST:event_pnlFinalizarMouseClicked
+
+    private void lblFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizarMouseClicked
+        confirm();
+    }//GEN-LAST:event_lblFinalizarMouseClicked
+
+    private void lblFinalizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizarMouseEntered
+        mouse(0);
+    }//GEN-LAST:event_lblFinalizarMouseEntered
+
+    private void lblFinalizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizarMouseExited
+        mouse(1);
+    }//GEN-LAST:event_lblFinalizarMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblFinalizar;
     private javax.swing.JLabel lblNomeAcao;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblValorAtual;
+    private javax.swing.JLabel lblValorTotal;
     private javax.swing.JLabel lblValorTotalNum;
     private javax.swing.JPanel pnlFinalizar;
     private javax.swing.JPanel pnlGeral;
@@ -346,16 +438,143 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner spnQuantidade;
     private javax.swing.JTabbedPane tbdMercadoNegociar;
     private javax.swing.JToggleButton tglTipo;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 
 
-    private void ConfigurarForm()
+    private void ConfigurarForm(int tip)
     {
         this.setTitle("Ações");
         this.setResizable(false);
+        tglTipo.setSelected(false);
+        Operacao(0);
+        op=0;
+        if(tip>0)
+        {
+            Empresa emp;
+            emp = new EmpresaDAO().encontrarId(tip);
+            lblNomeAcao.setText(emp.getNome());
+            lblValorAtual.setText("VALOR POR UNIDADE: R$" + emp.getValor());
+            atu = emp;
+            id = tip;
+        }
+        
     }
  
+    private void Operacao(int i)
+    {
+        if(i==0)
+        {
+             tglTipo.setText("COMPRAR");
+             tglTipo.setForeground(Color.GREEN);
+             lblValorTotal.setForeground(Color.GREEN);
+             lblValorTotalNum.setForeground(Color.GREEN);
+             lblFinalizar.setForeground(Color.GREEN);
+        }
+        else
+        {
+            tglTipo.setText("VENDER");
+            tglTipo.setForeground(Color.RED);
+            lblValorTotal.setForeground(Color.RED);
+            lblValorTotalNum.setForeground(Color.RED);
+            lblFinalizar.setForeground(Color.RED);
+        }
+    }
+    
+    private void mouse(int tipo)
+    {
+        if(op==0)
+        {
+          if(tipo==0)
+            {
 
+                pnlFinalizar.setBackground(Color.GREEN);
+                lblFinalizar.setForeground(Color.WHITE);
 
+            }
+            else
+            {
+                pnlFinalizar.setBackground(Color.WHITE);
+                lblFinalizar.setForeground(Color.GREEN);
+            }  
+        }
+        else
+        {
+            if(tipo==0)
+            {
+
+                pnlFinalizar.setBackground(Color.RED);
+                lblFinalizar.setForeground(Color.WHITE);
+
+            }
+            else
+            {
+                pnlFinalizar.setBackground(Color.WHITE);
+                lblFinalizar.setForeground(Color.RED);
+            }
+        }
+        
+    }
+
+    
+    public void confirm()
+    {
+        if(txtSenha.getPassword().length<10)
+        {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "A senha deve ter no minimo 10 caracteres",
+                    "Operação",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            
+        }
+        else
+        {
+            if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha.getPassword()))){
+                
+                //login realizado com sucesso!
+                Propriedade pro = new Propriedade();
+                pro.setId_empresa(id);
+                pro.setCpf_user(pp.getDoc());
+                pro.setQuantidade(Integer.parseInt(spnQuantidade.getValue().toString()));
+                pro.setValor_uni(atu.getValor());
+                PropriedadeDAO prodao = new PropriedadeDAO();
+                int resul = prodao.veri(pro);
+                if(resul>=1)
+                {
+                    if(op==0)
+                    {
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "COMPRA EFETIVADA!.",
+                            "PLCR",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
+                    else
+                    {
+                        
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "VENDA EFETIVADA!.",
+                            "PLCR",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
+                    this.dispose();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Ocorreu um erro.",
+                            "PLCR",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                }
+                
+            }
+        }
+    }
 }

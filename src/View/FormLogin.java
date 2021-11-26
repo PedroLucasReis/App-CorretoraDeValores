@@ -379,15 +379,15 @@ public class FormLogin extends javax.swing.JFrame {
         u.setCpf(txtCpf.getText());
         u.setSenha(new String(txtSenha.getPassword()));
         
-        if (u.getCpf().trim().isEmpty()){
+        if (txtCpf.getText().trim().length()<14){
             
-           lblAlerta.setText("O CAMPO CPF ESTÁ VAZIO!");
+           lblAlerta.setText("O CAMPO CPF NÃO ESTÁ COMPLETO!");
            lblAlerta.setVisible(true);
         }
         else if(u.getSenha().trim().isEmpty())
         {
 
-            lblAlerta.setText("O CAMPO SENHA ESTÁ VAZIO!");
+            lblAlerta.setText("TODAS AS SENHAS TEM NO MINIMO 10 CARACTERES!");
             lblAlerta.setVisible(true);
             
         }
@@ -422,6 +422,7 @@ public class FormLogin extends javax.swing.JFrame {
                     empdao4.inserir(emp);
                 }
                 PLCRLobby ent = new PLCRLobby(u.getCpf(), u.getSenha());
+                ent.pegarArq(ent);
                 ent.setVisible(true);
                 this.dispose();
                 

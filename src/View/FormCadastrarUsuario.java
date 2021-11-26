@@ -599,7 +599,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
             lblAlerta.setText("SENHA MUITO CURTA! NECESSARIO 10 CARACTERES");
             lblAlerta.setVisible(true);
         }
-        else if(txtSenhaConf.getPassword().length<10)
+        else if(txtSenhaConf.getPassword().length<10 || txtSenhaConf.getPassword() != txtSenha.getPassword())
         {
             lblAlerta.setText("DEVE-SE DIGITAR A MESMA SENHA NOS DOIS CAMPOS");
             lblAlerta.setVisible(true);

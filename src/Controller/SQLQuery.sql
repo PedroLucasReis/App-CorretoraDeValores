@@ -17,6 +17,15 @@ create table tb_empresa(
 	constraint pk_empresa_id primary key (id)
 );
 
+create table tb_propriedade(
+        id_empresa int,
+        cpf_user varchar(100),
+        quantidade int,
+        valor_uni double,
+	constraint fk_user_cpf foreign key (cpf_user) references tb_user(cpf),
+        constraint fk_empresa_id foreign key (id_empresa) references tb_empresa(id)
+);
+
 create table tb_ofertas (
 	cpf_user varchar(100),
 	id_empresa integer,

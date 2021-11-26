@@ -15,6 +15,8 @@ import javax.swing.JInternalFrame;
  */
 public class PLCRLobby extends javax.swing.JFrame {
 
+    private String doc;
+    private PLCRLobby pp;
     /**
      * Creates new form Lobby
      */
@@ -26,6 +28,7 @@ public class PLCRLobby extends javax.swing.JFrame {
     public PLCRLobby(String cpf, String senha) {
         initComponents();
         ConfigurarForm(cpf, senha);
+        doc = cpf;
     }
     
     
@@ -163,7 +166,7 @@ public class PLCRLobby extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuWegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuWegActionPerformed
-        abrirForm(new FormOpcoes(1));
+        abrirForm(new FormOpcoes(1, pp));
     }//GEN-LAST:event_MenuWegActionPerformed
 
     /**
@@ -245,5 +248,14 @@ public class PLCRLobby extends javax.swing.JFrame {
         lblSaldo.setText("SALDO: R$" + user.getSaldo());
     }
 
+    public void pegarArq(PLCRLobby at)
+    {
+        this.pp = at;
+    }
 
+    public String getDoc() {
+        return doc;
+    }
+    
+    
 }
