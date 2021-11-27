@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 public class PropriedadeDAO {
@@ -49,12 +50,12 @@ public class PropriedadeDAO {
        try 
        {
 
-            String SQL="select * from tb_propriedade where valor_uni=? and id_empresa=?";
+            String SQL="select * from tb_propriedade where valor_uni=? and id_empresa=? and cpf_user=md5(?)";
 
             cmd = con.prepareStatement(SQL);
             cmd.setDouble(1, pro.getValor_uni());
-            cmd.setDouble(2, pro.getId_empresa());
-
+            cmd.setInt(2, pro.getId_empresa());
+            cmd.setString(3, pro.getCpf_user());
             ResultSet rs = cmd.executeQuery();
             if (rs.next()){
                 return true;
@@ -71,11 +72,13 @@ public class PropriedadeDAO {
     public int atualizar(Propriedade pro){
         try {
             String SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
-
+            Propriedade ext = pesquisarCpfIdValor(pro);
+            int soma;
+            soma = ext.getQuantidade() + pro.getQuantidade();
             cmd = con.prepareStatement(SQL);
-            cmd.setInt(1, pro.getQuantidade());
+            cmd.setInt(1, soma);
             cmd.setDouble(2, pro.getValor_uni());
-            cmd.setDouble(3, pro.getId_empresa());
+            cmd.setInt(3, pro.getId_empresa());
             cmd.setString(4, pro.getCpf_user());
             //envia a instrução SQL para o banco
             if (cmd.executeUpdate() > 0){
@@ -91,6 +94,37 @@ public class PropriedadeDAO {
             Conect.desconectar(con);
         }
     }  
+    
+    public Propriedade pesquisarCpfIdValor(Propriedade pro){
+        try {
+            String SQL="select * from tb_propriedade where "
+                + "cpf_user=md5(?) and id_empresa=? and valor_uni=?";
+
+            cmd = con.prepareStatement(SQL);
+            cmd.setString(1, pro.getCpf_user());
+            cmd.setInt(2, pro.getId_empresa());
+            cmd.setDouble(3, pro.getValor_uni());
+
+            ResultSet rs = cmd.executeQuery();
+            if (rs.next()){
+                Propriedade pros = new Propriedade();
+                pros.setId_empresa(pro.getId_empresa());
+                pros.setCpf_user(pro.getCpf_user());
+                pros.setQuantidade(rs.getInt("quantidade"));
+                pros.setValor_uni(pro.getValor_uni());
+                return pros;
+            }else{
+                return null;
+            }
+            
+            
+
+        } catch (Exception e) {
+            System.err.println("ERRO2: " + e.getMessage());
+            return null;
+        }
+ 
+    }
     
     public int veri(Propriedade prop)
     {
