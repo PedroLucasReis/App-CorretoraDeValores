@@ -54,7 +54,7 @@ public class PLCRLobby extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        MenuSaldo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,7 +100,7 @@ public class PLCRLobby extends javax.swing.JFrame {
         AreaTrabalhoLayout.setVerticalGroup(
             AreaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AreaTrabalhoLayout.createSequentialGroup()
-                .addGap(0, 532, Short.MAX_VALUE)
+                .addContainerGap(532, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -139,9 +139,14 @@ public class PLCRLobby extends javax.swing.JFrame {
         jMenuItem5.setText("Editar");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
-        jMenuItem6.setText("Saldo");
-        jMenu2.add(jMenuItem6);
+        MenuSaldo.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
+        MenuSaldo.setText("Saldo");
+        MenuSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSaldoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuSaldo);
 
         jMenuBar1.add(jMenu2);
 
@@ -168,6 +173,10 @@ public class PLCRLobby extends javax.swing.JFrame {
     private void MenuWegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuWegActionPerformed
         abrirForm(new FormOpcoes(1, pp));
     }//GEN-LAST:event_MenuWegActionPerformed
+
+    private void MenuSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldoActionPerformed
+        abrirForm(new EditarSaldo(pp));
+    }//GEN-LAST:event_MenuSaldoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +216,7 @@ public class PLCRLobby extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane AreaTrabalho;
+    private javax.swing.JMenuItem MenuSaldo;
     private javax.swing.JMenuItem MenuWeg;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -216,7 +226,6 @@ public class PLCRLobby extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSaldo;
