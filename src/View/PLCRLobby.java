@@ -266,5 +266,9 @@ public class PLCRLobby extends javax.swing.JFrame {
         return doc;
     }
     
-    
+    public void atualizar(String sen)
+    {
+        Usuario user =new UsuarioDAO().pesquisarCpfSenha(doc, sen);
+        lblSaldo.setText("SALDO: R$ " + user.getSaldo());
+    }
 }

@@ -9,6 +9,7 @@ import Model.Usuario;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.Arrays;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,17 +18,24 @@ import javax.swing.JOptionPane;
  */
 public class EditarSaldo extends javax.swing.JInternalFrame {
 
-    PLCRLobby ant;
+    private PLCRLobby ant;
+    private int op;
     /**
      * Creates new form EditarSaldo
      */
     public EditarSaldo() {
         initComponents();
+        ConfigurarForm();
+        op=0;
+        Operacao(0);
     }
     
     public EditarSaldo(PLCRLobby back) {
         initComponents();
+        ConfigurarForm();
         ant = back;
+        op=0;
+        Operacao(0);
     }
 
     /**
@@ -48,6 +56,7 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
         sldSaldo = new javax.swing.JSlider();
         lblSaldoSlider = new javax.swing.JLabel();
         tglTipo = new javax.swing.JToggleButton();
+        lblClose = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
@@ -96,61 +105,83 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
 
         tglTipo.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
         tglTipo.setText("DEPOSITAR");
+        tglTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tglTipoActionPerformed(evt);
+            }
+        });
+
+        lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/CLOSE-131994911256789607.png"))); // NOI18N
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCloseMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCloseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCloseMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblArraste, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(289, 289, 289)
-                        .addComponent(lblSaldo))
+                        .addComponent(lblSaldo)
+                        .addGap(243, 243, 243)
+                        .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(sldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(267, 267, 267)
+                        .addComponent(tglTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
+                        .addGap(239, 239, 239)
                         .addComponent(lblSaldoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblArraste, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(134, 134, 134)
+                        .addComponent(sldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(lblFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(tglTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(253, 253, 253)
+                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(lblFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lblSaldo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(tglTipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblArraste, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSaldoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(53, 53, 53)
                 .addComponent(lblFinalizar)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,13 +211,41 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblFinalizarMouseExited
 
     private void lblFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizarMouseClicked
-        
+        confirm();
     }//GEN-LAST:event_lblFinalizarMouseClicked
+
+    private void tglTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglTipoActionPerformed
+        if(op==0)
+        {
+            op=1;
+            tglTipo.setText("SACAR");
+            Operacao(1);
+        }
+        else
+        {
+            op=0;
+            tglTipo.setText("DEPOSITAR");
+            Operacao(0);
+        }
+    }//GEN-LAST:event_tglTipoActionPerformed
+
+    private void lblCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseEntered
+        lblClose.setBorder(BorderFactory.createLineBorder(Color.black));
+    }//GEN-LAST:event_lblCloseMouseEntered
+
+    private void lblCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseExited
+        lblClose.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_lblCloseMouseExited
+
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_lblCloseMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblArraste;
+    private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblFinalizar;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblSaldoSlider;
@@ -202,7 +261,7 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
         lblSaldoSlider.setText("R$: 0");
     }
 
-    public void confirm(int tip)
+    public void confirm()
     {
         if(txtSenha.getPassword().length<10)
         {
@@ -218,25 +277,106 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
         {
             Usuario us;
             us = new UsuarioDAO().pesquisarCpfSenha(ant.getDoc(), new String(txtSenha.getPassword()));
-            double valort;
-            if(tglTipo.isSelected()==false)
+            if(us == null)
             {
-                valort = us.getSaldo() + sldSaldo.getValue();
+                JOptionPane.showMessageDialog(
+                    null,
+                    "A senha está incorreta",
+                    "Senha",
+                    JOptionPane.ERROR_MESSAGE
+                );
             }
             else
             {
-                if(us.getSaldo() > sldSaldo.getValue())
+                double valort;
+                if(tglTipo.isSelected()==false)
                 {
-                    valort = us.getSaldo() - sldSaldo.getValue();
+                    valort = us.getSaldo() + sldSaldo.getValue();
+                    us.setSaldo(valort);
+                    int ret = new UsuarioDAO().atualizar(us);
+                    if(ret==1)
+                    {
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Saldo Atualizado com sucesso!",
+                            "Saldo",
+                            JOptionPane.INFORMATION_MESSAGE
+                            );
+                        this.ant.atualizar(new String(txtSenha.getPassword()));
+                        this.dispose();
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Ocorreu um Erro!",
+                            "Saldo",
+                            JOptionPane.ERROR_MESSAGE
+                            );
+                    }
+                    this.ant.atualizar(new String(txtSenha.getPassword()));
+                    this.dispose();
                 }
                 else
                 {
+                    if(us.getSaldo() >= sldSaldo.getValue())
+                    {
+                        valort = us.getSaldo() - sldSaldo.getValue();
+                        us.setSaldo(valort);
+                        int ret = new UsuarioDAO().atualizar(us);
+                        if(ret==1)
+                        {
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "Saldo Atualizado com sucesso!",
+                                "Saldo",
+                                JOptionPane.INFORMATION_MESSAGE
+                                );
+                            this.ant.atualizar(new String(txtSenha.getPassword()));
+                            this.dispose();
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "Ocorreu um Erro!",
+                                "Saldo",
+                                JOptionPane.ERROR_MESSAGE
+                                );
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(
+                        null,
+                        "Você só possui R$: " + us.getSaldo(),
+                        "Saldo",
+                        JOptionPane.ERROR_MESSAGE
+                        );
+                    }
                     
                 }
                 
             }
             
+            
         }
     }
 
+    
+    private void Operacao(int i)
+    {
+        if(i==0)
+        {
+             tglTipo.setText("DEPOSITAR");
+             tglTipo.setForeground(Color.GREEN);
+             
+        }
+        else
+        {
+            tglTipo.setText("SACAR");
+            tglTipo.setForeground(Color.RED);
+            
+        }
+    }
 }

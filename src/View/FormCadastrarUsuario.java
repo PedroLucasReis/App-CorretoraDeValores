@@ -599,7 +599,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
             lblAlerta.setText("SENHA MUITO CURTA! NECESSARIO 10 CARACTERES");
             lblAlerta.setVisible(true);
         }
-        else if(txtSenhaConf.getPassword().length<10 || txtSenhaConf.getPassword() != txtSenha.getPassword())
+        else if(txtSenhaConf.getPassword().length<10)
         {
             lblAlerta.setText("DEVE-SE DIGITAR A MESMA SENHA NOS DOIS CAMPOS");
             lblAlerta.setVisible(true);
@@ -667,6 +667,7 @@ public class FormCadastrarUsuario extends javax.swing.JFrame {
                             empdao4.inserir(emp);
                         }
                         PLCRLobby ent = new PLCRLobby(us.getCpf(), us.getSenha());
+                        ent.pegarArq(ent);
                         ent.setVisible(true);
                         this.dispose();
                     }else{

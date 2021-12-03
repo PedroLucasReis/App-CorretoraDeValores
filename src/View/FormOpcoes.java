@@ -9,6 +9,7 @@ import Controller.PropriedadeDAO;
 import Controller.UsuarioDAO;
 import Model.Empresa;
 import Model.Propriedade;
+import Model.Usuario;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
@@ -65,6 +66,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlFinalizar = new javax.swing.JPanel();
         lblFinalizar = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         pnlGeral.setBackground(new java.awt.Color(255, 255, 255));
         pnlGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
@@ -135,7 +140,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 .addComponent(lblQuantidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlValorTotal.setBackground(new java.awt.Color(255, 255, 255));
@@ -282,13 +287,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlMercadoLayout.setHorizontalGroup(
             pnlMercadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMercadoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlMercadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlMercadoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlMercadoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblValorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblValorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(pnlMercadoLayout.createSequentialGroup()
                 .addGap(293, 293, 293)
@@ -309,15 +311,51 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
 
         tbdMercadoNegociar.addTab("MERCADO", pnlMercado);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tbdMercadoNegociar.addTab("NEGOCIAR", jPanel3);
@@ -328,7 +366,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             pnlGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tbdMercadoNegociar)
             .addGroup(pnlGeralLayout.createSequentialGroup()
-                .addGap(229, 229, 229)
+                .addGap(267, 267, 267)
                 .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -422,6 +460,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblFinalizar;
     private javax.swing.JLabel lblNomeAcao;
     private javax.swing.JLabel lblQuantidade;
@@ -534,45 +576,76 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha.getPassword()))){
                 
                 //login realizado com sucesso!
-                Propriedade pro = new Propriedade();
-                pro.setId_empresa(id);
-                pro.setCpf_user(pp.getDoc());
-                pro.setQuantidade(Integer.parseInt(spnQuantidade.getValue().toString()));
-                pro.setValor_uni(atu.getValor());
-                PropriedadeDAO prodao = new PropriedadeDAO();
-                int resul = prodao.veri(pro);
-                if(resul>=1)
-                {
-                    if(op==0)
-                    {
-                        JOptionPane.showMessageDialog(
-                            null,
-                            "COMPRA EFETIVADA!.",
-                            "PLCR",
-                            JOptionPane.INFORMATION_MESSAGE
-                        );
-                    }
-                    else
-                    {
-                        
-                        JOptionPane.showMessageDialog(
-                            null,
-                            "VENDA EFETIVADA!.",
-                            "PLCR",
-                            JOptionPane.INFORMATION_MESSAGE
-                        );
-                    }
-                    this.dispose();
-                }
-                else
+                Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
+                
+                if(us.getSaldo() < Integer.parseInt(spnQuantidade.getValue().toString()) && op==0)
                 {
                     JOptionPane.showMessageDialog(
                             null,
-                            "Ocorreu um erro.",
-                            "PLCR",
+                            "SALDO INSUFICIENTE",
+                            "SALDO",
                             JOptionPane.ERROR_MESSAGE
                         );
                 }
+                else
+                {
+                    Propriedade pro = new Propriedade();
+                    pro.setId_empresa(id);
+                    pro.setCpf_user(pp.getDoc());
+                    pro.setQuantidade(Integer.parseInt(spnQuantidade.getValue().toString()));
+                    pro.setValor_uni(atu.getValor());
+                    PropriedadeDAO prodao = new PropriedadeDAO();
+                    int resul = prodao.veri(pro, op);
+                    if(resul>=1)
+                    {
+                        if(op==0)
+                        {
+                            us.setSaldo(us.getSaldo()-(atu.getValor()* Integer.parseInt(spnQuantidade.getValue().toString())));
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "COMPRA EFETIVADA!.",
+                                "PLCR",
+                                JOptionPane.INFORMATION_MESSAGE
+                            );
+                           
+                        }
+                        else
+                        {
+                            us.setSaldo(us.getSaldo()+(atu.getValor()* Integer.parseInt(spnQuantidade.getValue().toString())));
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "VENDA EFETIVADA!.",
+                                "PLCR",
+                                JOptionPane.INFORMATION_MESSAGE
+                            );
+                        }
+                        new UsuarioDAO().atualizar(us);
+                        pp.atualizar( new String(txtSenha.getPassword()));
+                        this.dispose();
+                    }
+                    else
+                    {
+                        if(resul == -1)
+                        {
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "Ocorreu um erro.",
+                                "PLCR",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(
+                                null,
+                                "VOCÊ NÃO POSSUI ESSA QUANTIDAE DE AÇÕES",
+                                "PLCR",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                        }
+                    }
+                }
+                
                 
             }
         }

@@ -69,12 +69,23 @@ public class PropriedadeDAO {
         }
     }
     
-    public int atualizar(Propriedade pro){
+    public int atualizar(Propriedade pro, int tipo){
         try {
             String SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
             Propriedade ext = pesquisarCpfIdValor(pro);
             int soma;
-            soma = ext.getQuantidade() + pro.getQuantidade();
+            if(tipo==0)
+            {
+                soma = ext.getQuantidade() + pro.getQuantidade();
+            }
+            else
+            {
+                soma = ext.getQuantidade() - pro.getQuantidade();
+                if(soma < 0)
+                {
+                    return -1;
+                }
+            }
             cmd = con.prepareStatement(SQL);
             cmd.setInt(1, soma);
             cmd.setDouble(2, pro.getValor_uni());
@@ -126,12 +137,15 @@ public class PropriedadeDAO {
  
     }
     
-    public int veri(Propriedade prop)
+    public int veri(Propriedade prop, int tip)
     {
         
         if(encontrarValorUni(prop)==true)
         {
-            return atualizar(prop);
+            
+            return atualizar(prop, tip);
+            
+            
         }
         else
         {
