@@ -10,7 +10,7 @@ public class Conect {
     //PARÂMETROS
     private static final String HOST = "localhost:5432";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "Comp2021";
+    private static final String SENHA = "151101";
     private static final String DATABASE = "PLCR";
     
     //STRING DE CONEXÃO
