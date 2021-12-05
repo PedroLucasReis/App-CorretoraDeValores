@@ -1,4 +1,3 @@
-
 create table tb_user(
  	nome varchar(255),
  	email varchar(100),
@@ -36,4 +35,4 @@ create table tb_ofertas (
         constraint fk_empresa_id foreign key (id_empresa) references tb_empresa(id)
 );
 
-select * from tb_user;
+select * from tb_propriedade;
