@@ -12,7 +12,10 @@ import Model.Propriedade;
 import Model.Usuario;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -67,23 +70,24 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         lblFinalizar = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbVendas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbCompras = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tglTipo2 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        lblQuantidade2 = new javax.swing.JLabel();
+        spnQuantidade2 = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblValor2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        lblSenha2 = new javax.swing.JLabel();
+        txtSenha2 = new javax.swing.JPasswordField();
+        pnlFinalizar2 = new javax.swing.JPanel();
+        lblFinalizar2 = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
 
         pnlGeral.setBackground(new java.awt.Color(255, 255, 255));
         pnlGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
@@ -333,8 +337,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbVendas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        tbVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -345,11 +349,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbVendas);
 
-        jTable2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 51)));
-        jTable2.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbCompras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 51)));
+        tbCompras.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
+        tbCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -360,7 +364,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbCompras);
 
         jLabel1.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 255, 51));
@@ -376,12 +380,19 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
 
         tglTipo2.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
         tglTipo2.setText("comprar");
+        tglTipo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tglTipo2ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel3.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
-        jLabel3.setText("QUANTIDADE:");
+        lblQuantidade2.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
+        lblQuantidade2.setText("QUANTIDADE:");
+
+        spnQuantidade2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -389,9 +400,9 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jLabel3)
+                .addComponent(lblQuantidade2)
                 .addGap(18, 18, 18)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spnQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -399,16 +410,16 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnQuantidade2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(lblQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel4.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
-        jLabel4.setText("VALOR: R$");
+        lblValor2.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
+        lblValor2.setText("VALOR: R$");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -416,7 +427,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel4)
+                .addComponent(lblValor2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -427,17 +438,17 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel5.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
-        jLabel5.setText("SENHA:");
+        lblSenha2.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
+        lblSenha2.setText("SENHA:");
 
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtSenha2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -445,9 +456,9 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -455,32 +466,40 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSenha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
+        pnlFinalizar2.setBackground(new java.awt.Color(255, 255, 255));
+        pnlFinalizar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
 
-        jLabel7.setFont(new java.awt.Font("Game Of Squids", 0, 24)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("FINALIZAR");
+        lblFinalizar2.setFont(new java.awt.Font("Game Of Squids", 0, 24)); // NOI18N
+        lblFinalizar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFinalizar2.setText("FINALIZAR");
+        lblFinalizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblFinalizar2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblFinalizar2MouseExited(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFinalizar2Layout = new javax.swing.GroupLayout(pnlFinalizar2);
+        pnlFinalizar2.setLayout(pnlFinalizar2Layout);
+        pnlFinalizar2Layout.setHorizontalGroup(
+            pnlFinalizar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFinalizar2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        pnlFinalizar2Layout.setVerticalGroup(
+            pnlFinalizar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFinalizar2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -504,7 +523,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(pnlFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
@@ -530,12 +549,26 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnlFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tbdMercadoNegociar.addTab("NEGOCIAR", jPanel3);
+
+        lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/CLOSE-131994911256789607.png"))); // NOI18N
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCloseMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCloseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCloseMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlGeralLayout = new javax.swing.GroupLayout(pnlGeral);
         pnlGeral.setLayout(pnlGeralLayout);
@@ -545,15 +578,22 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(pnlGeralLayout.createSequentialGroup()
                 .addGap(267, 267, 267)
                 .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlGeralLayout.setVerticalGroup(
             pnlGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGeralLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlGeralLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlGeralLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tbdMercadoNegociar))
+                .addComponent(tbdMercadoNegociar, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -610,11 +650,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tglTipoActionPerformed
 
     private void pnlFinalizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizarMouseEntered
-       mouse(0);
+       mouse(0,0);
     }//GEN-LAST:event_pnlFinalizarMouseEntered
 
     private void pnlFinalizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizarMouseExited
-        mouse(1);
+        mouse(1,0);
     }//GEN-LAST:event_pnlFinalizarMouseExited
 
     private void pnlFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizarMouseClicked
@@ -626,11 +666,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblFinalizarMouseClicked
 
     private void lblFinalizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizarMouseEntered
-        mouse(0);
+        mouse(0,0);
     }//GEN-LAST:event_lblFinalizarMouseEntered
 
     private void lblFinalizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizarMouseExited
-        mouse(1);
+        mouse(1,0);
     }//GEN-LAST:event_lblFinalizarMouseExited
 
     private void tbdMercadoNegociarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdMercadoNegociarStateChanged
@@ -638,36 +678,69 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         tglTipo2.setSelected(false);
         tglTipo.setText("COMPRAR");
         tglTipo2.setText("COMPRAR");
+        op=0;
     }//GEN-LAST:event_tbdMercadoNegociarStateChanged
+
+    private void lblFinalizar2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizar2MouseEntered
+        mouse(0,1);
+    }//GEN-LAST:event_lblFinalizar2MouseEntered
+
+    private void lblFinalizar2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizar2MouseExited
+       mouse(1,1);
+    }//GEN-LAST:event_lblFinalizar2MouseExited
+
+    private void tglTipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglTipo2ActionPerformed
+        if(op==0)
+        {
+            op=1;
+            tglTipo2.setText("VENDER");
+            Operacao(1,1);
+        }
+        else
+        {
+            op=0;
+            tglTipo2.setText("COMPRAR");
+            Operacao(0,1);
+        }
+    }//GEN-LAST:event_tglTipo2ActionPerformed
+
+    private void lblCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseEntered
+        lblClose.setBorder(BorderFactory.createLineBorder(Color.black));
+    }//GEN-LAST:event_lblCloseMouseEntered
+
+    private void lblCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseExited
+        lblClose.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_lblCloseMouseExited
+
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_lblCloseMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblFinalizar;
+    private javax.swing.JLabel lblFinalizar2;
     private javax.swing.JLabel lblNomeAcao;
     private javax.swing.JLabel lblQuantidade;
+    private javax.swing.JLabel lblQuantidade2;
+    private javax.swing.JLabel lblSenha2;
+    private javax.swing.JLabel lblValor2;
     private javax.swing.JLabel lblValorAtual;
     private javax.swing.JLabel lblValorTotal;
     private javax.swing.JLabel lblValorTotalNum;
     private javax.swing.JPanel pnlFinalizar;
+    private javax.swing.JPanel pnlFinalizar2;
     private javax.swing.JPanel pnlGeral;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlMercado;
@@ -675,10 +748,14 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlSenha;
     private javax.swing.JPanel pnlValorTotal;
     private javax.swing.JSpinner spnQuantidade;
+    private javax.swing.JSpinner spnQuantidade2;
+    private javax.swing.JTable tbCompras;
+    private javax.swing.JTable tbVendas;
     private javax.swing.JTabbedPane tbdMercadoNegociar;
     private javax.swing.JToggleButton tglTipo;
     private javax.swing.JToggleButton tglTipo2;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JPasswordField txtSenha2;
     // End of variables declaration//GEN-END:variables
 
 
@@ -688,6 +765,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         this.setResizable(false);
         tglTipo.setSelected(false);
         Operacao(0,0);
+        Operacao(0,1);
         op=0;
         if(tip>0)
         {
@@ -698,7 +776,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             atu = emp;
             id = tip;
         }
-        
+        configurarTabela();
     }
  
     private void Operacao(int i, int j)
@@ -726,56 +804,89 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         {
             if(i==0)
             {
-                 tglTipo.setText("COMPRAR");
-                 tglTipo.setForeground(Color.GREEN);
-                 lblValorTotal.setForeground(Color.GREEN);
-                 lblValorTotalNum.setForeground(Color.GREEN);
-                 lblFinalizar.setForeground(Color.GREEN);
+                 tglTipo2.setText("COMPRAR");
+                 tglTipo2.setForeground(Color.GREEN);
+                 lblFinalizar2.setForeground(Color.GREEN);
             }
             else
             {
-                tglTipo.setText("VENDER");
-                tglTipo.setForeground(Color.RED);
-                lblValorTotal.setForeground(Color.RED);
-                lblValorTotalNum.setForeground(Color.RED);
-                lblFinalizar.setForeground(Color.RED);
+                tglTipo2.setText("VENDER");
+                tglTipo2.setForeground(Color.RED);
+                lblFinalizar2.setForeground(Color.RED);
             }
         }
         
     }
     
-    private void mouse(int tipo)
+    private void mouse(int tipo, int aba)
     {
-        if(op==0)
+        if(aba==0)
         {
-          if(tipo==0)
+            if(op==0)
             {
+              if(tipo==0)
+                {
 
-                pnlFinalizar.setBackground(Color.GREEN);
-                lblFinalizar.setForeground(Color.WHITE);
+                    pnlFinalizar.setBackground(Color.GREEN);
+                    lblFinalizar.setForeground(Color.WHITE);
 
+                }
+                else
+                {
+                    pnlFinalizar.setBackground(Color.WHITE);
+                    lblFinalizar.setForeground(Color.GREEN);
+                }  
             }
             else
             {
-                pnlFinalizar.setBackground(Color.WHITE);
-                lblFinalizar.setForeground(Color.GREEN);
-            }  
+                if(tipo==0)
+                {
+
+                    pnlFinalizar.setBackground(Color.RED);
+                    lblFinalizar.setForeground(Color.WHITE);
+
+                }
+                else
+                {
+                    pnlFinalizar.setBackground(Color.WHITE);
+                    lblFinalizar.setForeground(Color.RED);
+                }
+            }
         }
         else
         {
-            if(tipo==0)
+            if(op==0)
             {
+              if(tipo==0)
+                {
 
-                pnlFinalizar.setBackground(Color.RED);
-                lblFinalizar.setForeground(Color.WHITE);
+                    pnlFinalizar2.setBackground(Color.GREEN);
+                    lblFinalizar2.setForeground(Color.WHITE);
 
+                }
+                else
+                {
+                    pnlFinalizar2.setBackground(Color.WHITE);
+                    lblFinalizar2.setForeground(Color.GREEN);
+                }  
             }
             else
             {
-                pnlFinalizar.setBackground(Color.WHITE);
-                lblFinalizar.setForeground(Color.RED);
+                if(tipo==0)
+                {
+
+                    pnlFinalizar2.setBackground(Color.RED);
+                    lblFinalizar2.setForeground(Color.WHITE);
+
+                }
+                else
+                {
+                    pnlFinalizar2.setBackground(Color.WHITE);
+                    lblFinalizar2.setForeground(Color.RED);
+                }
             }
         }
+        
         
     }
 
@@ -871,4 +982,48 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             }
         }
     }
+    
+    private void configurarTabela() {
+        DefaultTableModel m = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        m.addColumn("QUANTIDADE");
+        m.addColumn("VALOR");
+        
+        tbCompras.setModel(m);
+        tbVendas.setModel(m);
+    }
+    
+    private void preencherTabelaEmpresa(List<Empresa> lista, List<Empresa> lista2) {
+        if (lista != null) {
+            if (lista.size() > 0) {
+                DefaultTableModel m = (DefaultTableModel)tbCompras.getModel();
+                for(Empresa com : lista){
+                    m.addRow(new Object[]
+                        {
+                            emp.getId(),
+                            emp.getNome(),
+                            emp.getPais()
+                        }
+                    );
+                }
+                tabBD.setModel(m);
+            } else {
+                configurarTabela();
+                JOptionPane.showMessageDialog(null, "A tabela não contém dados.", "Pesquisa",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        } 
+       
+        
+    }
+    
+    
+    
+    
+    
 }

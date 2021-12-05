@@ -27,6 +27,7 @@ create table tb_propriedade(
 );
 
 create table tb_ofertas (
+        tipo integer,
 	cpf_user varchar(100),
 	id_empresa integer,
 	quantidade integer,
