@@ -5,9 +5,11 @@
 package View;
 
 import Controller.EmpresaDAO;
+import Controller.OfertasDAO;
 import Controller.PropriedadeDAO;
 import Controller.UsuarioDAO;
 import Model.Empresa;
+import Model.Ofertas;
 import Model.Propriedade;
 import Model.Usuario;
 import java.awt.Color;
@@ -81,12 +83,14 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         spnQuantidade2 = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         lblValor2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         lblSenha2 = new javax.swing.JLabel();
         txtSenha2 = new javax.swing.JPasswordField();
         pnlFinalizar2 = new javax.swing.JPanel();
         lblFinalizar2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        txtValorTotal2 = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
 
         pnlGeral.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,21 +153,21 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(pnlQuantidadeLayout.createSequentialGroup()
                 .addGroup(pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addComponent(lblQuantidade))
                     .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblQuantidade)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(64, 64, 64)
+                        .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         pnlQuantidadeLayout.setVerticalGroup(
             pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(lblQuantidade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         pnlValorTotal.setBackground(new java.awt.Color(255, 255, 255));
@@ -181,20 +185,20 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlValorTotalLayout.setHorizontalGroup(
             pnlValorTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlValorTotalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblValorTotalNum, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlValorTotalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblValorTotal)
-                .addGap(76, 76, 76))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlValorTotalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblValorTotalNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(77, 77, 77))
         );
         pnlValorTotalLayout.setVerticalGroup(
             pnlValorTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlValorTotalLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(58, 58, 58)
                 .addComponent(lblValorTotal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblValorTotalNum, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -211,22 +215,22 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlSenhaLayout.setHorizontalGroup(
             pnlSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSenhaLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(pnlSenhaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtSenha)
+                .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnlSenhaLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSenhaLayout.setVerticalGroup(
             pnlSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSenhaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(55, 55, 55))
         );
 
         pnlFinalizar.setBackground(new java.awt.Color(255, 255, 255));
@@ -393,6 +397,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         lblQuantidade2.setText("QUANTIDADE:");
 
         spnQuantidade2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnQuantidade2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnQuantidade2StateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -421,6 +430,12 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         lblValor2.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
         lblValor2.setText("VALOR: R$");
 
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtValorKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -429,7 +444,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32)
                 .addComponent(lblValor2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -437,7 +452,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -499,7 +514,29 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             pnlFinalizar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFinalizar2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txtValorTotal2.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
+        txtValorTotal2.setText("VALOR TOTAL: R$");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtValorTotal2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtValorTotal2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -523,7 +560,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(pnlFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
@@ -541,7 +579,6 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         .addComponent(tglTipo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -549,8 +586,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -593,7 +633,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tbdMercadoNegociar, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
+                .addComponent(tbdMercadoNegociar))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -716,6 +756,18 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
+    private void txtValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyReleased
+        double tot;
+        tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
+        txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
+    }//GEN-LAST:event_txtValorKeyReleased
+
+    private void spnQuantidade2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnQuantidade2StateChanged
+        double tot;
+        tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
+        txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
+    }//GEN-LAST:event_spnQuantidade2StateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -725,9 +777,9 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblFinalizar;
     private javax.swing.JLabel lblFinalizar2;
@@ -756,6 +808,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton tglTipo2;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JPasswordField txtSenha2;
+    private javax.swing.JTextField txtValor;
+    private javax.swing.JLabel txtValorTotal2;
     // End of variables declaration//GEN-END:variables
 
 
@@ -777,6 +831,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             id = tip;
         }
         configurarTabela();
+        preencherTabelaOfertas(new OfertasDAO().pesquisarTipoId(0, tip), new OfertasDAO().pesquisarTipoId(1, tip));
     }
  
     private void Operacao(int i, int j)
@@ -891,97 +946,203 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     }
 
     
-    public void confirm()
+    private void confirm()
     {
-        if(txtSenha.getPassword().length<10)
+        if(Integer.parseInt(spnQuantidade.getValue().toString())==0)
         {
             JOptionPane.showMessageDialog(
                     null,
-                    "A senha deve ter no minimo 10 caracteres",
-                    "Operação",
+                    "A quantidade deve ser maior que 0",
+                    "Quantidade",
                     JOptionPane.ERROR_MESSAGE
                 );
-            
         }
         else
         {
-            if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha.getPassword()))){
-                
-                //login realizado com sucesso!
-                Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
-                
-                if(us.getSaldo() < Integer.parseInt(spnQuantidade.getValue().toString()) && op==0)
-                {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "SALDO INSUFICIENTE",
-                            "SALDO",
-                            JOptionPane.ERROR_MESSAGE
-                        );
-                }
-                else
-                {
-                    Propriedade pro = new Propriedade();
-                    pro.setId_empresa(id);
-                    pro.setCpf_user(pp.getDoc());
-                    pro.setQuantidade(Integer.parseInt(spnQuantidade.getValue().toString()));
-                    pro.setValor_uni(atu.getValor());
-                    PropriedadeDAO prodao = new PropriedadeDAO();
-                    int resul = prodao.veri(pro, op);
-                    if(resul>=1)
+            if(txtSenha.getPassword().length<10)
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "A senha deve ter no minimo 10 caracteres",
+                        "Operação",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+
+            }
+            else
+            {
+                if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha.getPassword()))){
+
+                    //login realizado com sucesso!
+                    Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
+                    double tot;
+                    tot = Integer.parseInt(spnQuantidade.getValue().toString()) * atu.getValor();
+                    if(us.getSaldo() < tot && op==0)
                     {
-                        if(op==0)
-                        {
-                            us.setSaldo(us.getSaldo()-(atu.getValor()* Integer.parseInt(spnQuantidade.getValue().toString())));
-                            JOptionPane.showMessageDialog(
+                        JOptionPane.showMessageDialog(
                                 null,
-                                "COMPRA EFETIVADA!.",
-                                "PLCR",
-                                JOptionPane.INFORMATION_MESSAGE
+                                "SALDO INSUFICIENTE",
+                                "SALDO",
+                                JOptionPane.ERROR_MESSAGE
                             );
-                           
-                        }
-                        else
-                        {
-                            us.setSaldo(us.getSaldo()+(atu.getValor()* Integer.parseInt(spnQuantidade.getValue().toString())));
-                            JOptionPane.showMessageDialog(
-                                null,
-                                "VENDA EFETIVADA!.",
-                                "PLCR",
-                                JOptionPane.INFORMATION_MESSAGE
-                            );
-                        }
-                        new UsuarioDAO().atualizar(us);
-                        pp.atualizar( new String(txtSenha.getPassword()));
-                        this.dispose();
                     }
                     else
                     {
-                        if(resul == -1)
+                        Propriedade pro = new Propriedade();
+                        pro.setId_empresa(id);
+                        pro.setCpf_user(pp.getDoc());
+                        pro.setQuantidade(Integer.parseInt(spnQuantidade.getValue().toString()));
+                        pro.setValor_uni(atu.getValor());
+                        PropriedadeDAO prodao = new PropriedadeDAO();
+                        int resul = prodao.veri(pro, op);
+                        if(resul>=1)
                         {
-                            JOptionPane.showMessageDialog(
-                                null,
-                                "Ocorreu um erro.",
-                                "PLCR",
-                                JOptionPane.ERROR_MESSAGE
-                            );
+                            if(op==0)
+                            {
+                                us.setSaldo(us.getSaldo()-(atu.getValor()* Integer.parseInt(spnQuantidade.getValue().toString())));
+                                JOptionPane.showMessageDialog(
+                                    null,
+                                    "COMPRA EFETIVADA!.",
+                                    "PLCR",
+                                    JOptionPane.INFORMATION_MESSAGE
+                                );
+
+                            }
+                            else
+                            {
+                                us.setSaldo(us.getSaldo()+(atu.getValor()* Integer.parseInt(spnQuantidade.getValue().toString())));
+                                JOptionPane.showMessageDialog(
+                                    null,
+                                    "VENDA EFETIVADA!.",
+                                    "PLCR",
+                                    JOptionPane.INFORMATION_MESSAGE
+                                );
+                            }
+                            new UsuarioDAO().atualizar(us);
+                            pp.atualizar( new String(txtSenha.getPassword()));
+                            this.dispose();
                         }
                         else
                         {
-                            JOptionPane.showMessageDialog(
-                                null,
-                                "VOCÊ NÃO POSSUI ESSA QUANTIDAE DE AÇÕES",
-                                "PLCR",
-                                JOptionPane.ERROR_MESSAGE
-                            );
+                            if(resul == -1)
+                            {
+                                JOptionPane.showMessageDialog(
+                                    null,
+                                    "Ocorreu um erro.",
+                                    "PLCR",
+                                    JOptionPane.ERROR_MESSAGE
+                                );
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(
+                                    null,
+                                    "VOCÊ NÃO POSSUI ESSA QUANTIDAE DE AÇÕES",
+                                    "PLCR",
+                                    JOptionPane.ERROR_MESSAGE
+                                );
+                            }
                         }
                     }
+
+
                 }
-                
-                
+            }
+        }
+        
+    }
+    
+    private void confirm2()
+    {
+        if(Integer.parseInt(spnQuantidade2.getValue().toString())==0)
+        {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "A quantidade deve ser maior que 0",
+                    "Quantidade",
+                    JOptionPane.ERROR_MESSAGE
+                );
+        }
+        else
+        {
+            if(txtSenha2.getPassword().length<10)
+            {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "A senha deve ter no minimo 10 caracteres",
+                        "Operação",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+
+            }
+            else
+            {
+                if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha.getPassword()))){
+
+                    //login realizado com sucesso!
+                    Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
+                    double tot;
+                    tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
+                    if(us.getSaldo() < tot && op==0)
+                    {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "SALDO INSUFICIENTE",
+                                "SALDO",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                    }
+                    else
+                    {
+                        Propriedade pro = new Propriedade();
+                        pro.setId_empresa(id);
+                        pro.setCpf_user(pp.getDoc());
+                        pro.setQuantidade(Integer.parseInt(spnQuantidade2.getValue().toString()));
+                        pro.setValor_uni(Double.parseDouble(txtValor.getText()));
+                        List<Ofertas> lista;
+                        if(op==0)
+                        {
+                            lista = new OfertasDAO().pesquisarTipoId(1, id);
+                        }
+                        else
+                        {
+                            lista = new OfertasDAO().pesquisarTipoId(0, id);
+                        }
+                        if(lista!=null)
+                        {
+                            for(Ofertas ofe : lista)
+                            {
+                                if(op==0)
+                                {
+                                    if(ofe.getValor()==pro.getValor_uni())
+                                    {
+                                        if(ofe.getQuantidade() > pro.getQuantidade())
+                                        {
+                                            
+                                        }
+                                    }
+                                }
+                                else
+                                {
+
+                                }
+
+                            }
+                        }
+                        
+                        
+                        
+                        PropriedadeDAO prodao = new PropriedadeDAO();
+                        int resul = prodao.veri(pro, op);
+                        
+                    }
+
+
+                }
             }
         }
     }
+    
     
     private void configurarTabela() {
         DefaultTableModel m = new DefaultTableModel() {
@@ -997,27 +1158,39 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         tbVendas.setModel(m);
     }
     
-    private void preencherTabelaEmpresa(List<Empresa> lista, List<Empresa> lista2) {
-        if (lista != null) {
-            if (lista.size() > 0) {
+    private void preencherTabelaOfertas(List<Ofertas> comp, List<Ofertas> vend) {
+        if (comp != null) {
+            if (comp.size() > 0) {
                 DefaultTableModel m = (DefaultTableModel)tbCompras.getModel();
-                for(Empresa com : lista){
+                for(Ofertas com : comp){
                     m.addRow(new Object[]
                         {
-                            emp.getId(),
-                            emp.getNome(),
-                            emp.getPais()
+                            com.getId_empresa(),
+                            com.getQuantidade()
                         }
                     );
                 }
-                tabBD.setModel(m);
+                tbCompras.setModel(m);
             } else {
                 configurarTabela();
-                JOptionPane.showMessageDialog(null, "A tabela não contém dados.", "Pesquisa",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
             }
         } 
+        if (vend != null) {
+            if (vend.size() > 0) {
+                DefaultTableModel m = (DefaultTableModel)tbVendas.getModel();
+                for(Ofertas ven : vend){
+                    m.addRow(new Object[]
+                        {
+                            ven.getId_empresa(),
+                            ven.getQuantidade()
+                        }
+                    );
+                }
+                tbVendas.setModel(m);
+            } else {
+                configurarTabela();
+            }
+        }
        
         
     }

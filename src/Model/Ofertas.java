@@ -3,6 +3,7 @@ package Model;
 
 
 public class Ofertas {
+    private int tipo;
     private String cpf_user;
     private int id_empresa;
     private int quantidade;
@@ -38,6 +39,14 @@ public class Ofertas {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
     
     
