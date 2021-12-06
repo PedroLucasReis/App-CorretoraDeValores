@@ -3,6 +3,7 @@ package Model;
 
 
 public class Ofertas {
+    private int id;
     private int tipo;
     private String cpf_user;
     private int id_empresa;
@@ -47,6 +48,14 @@ public class Ofertas {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

@@ -5,7 +5,7 @@ create table tb_user(
 	telefone varchar(100),
 	data_nasc varchar(100),
 	senha varchar (100),
-    saldo float,
+        saldo float,
 	constraint pk_user_cpf primary key (cpf)
 );
 
@@ -26,6 +26,7 @@ create table tb_propriedade(
 );
 
 create table tb_ofertas (
+        id serial,
         tipo integer,
 	cpf_user varchar(100),
 	id_empresa integer,

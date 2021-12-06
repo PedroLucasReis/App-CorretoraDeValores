@@ -1,12 +1,15 @@
 
 package Controller;
 
+
 import Model.Propriedade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -129,6 +132,35 @@ public class PropriedadeDAO {
             }
             
             
+
+        } catch (Exception e) {
+            System.err.println("ERRO2: " + e.getMessage());
+            return null;
+        }
+ 
+    }
+    
+     public List<Propriedade> pesquisarCpfId(Propriedade pro){
+        try {
+            String SQL="select * from tb_propriedade where "
+                + "cpf_user=md5(?) and id_empresa=?";
+
+            cmd = con.prepareStatement(SQL);
+            cmd.setString(1, pro.getCpf_user());
+            cmd.setInt(2, pro.getId_empresa());
+
+            
+            List<Propriedade> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()){
+                Propriedade pros = new Propriedade();
+                pros.setId_empresa(pro.getId_empresa());
+                pros.setCpf_user(pro.getCpf_user());
+                pros.setQuantidade(rs.getInt("quantidade"));
+                pros.setValor_uni(rs.getDouble("valor_uni"));
+                lista.add(pros);
+            }
+            return lista;
 
         } catch (Exception e) {
             System.err.println("ERRO2: " + e.getMessage());

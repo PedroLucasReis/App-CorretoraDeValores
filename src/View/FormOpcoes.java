@@ -1083,6 +1083,12 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
                     double tot;
                     tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
+                    List<Ofertas> lista2 = new OfertasDAO().pesquisarCpfIdTipo(pp.getDoc(), id, op);
+                    int tot2=0;
+                    for(Ofertas ofe2 : lista2)
+                    {
+                        tot2=tot2+ofe2.getQuantidade();
+                    }
                     if(us.getSaldo() < tot && op==0)
                     {
                         JOptionPane.showMessageDialog(
@@ -1112,20 +1118,103 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         {
                             for(Ofertas ofe : lista)
                             {
-                                if(op==0)
+                                if(ofe.getQuantidade() > 0 && pro.getQuantidade()!=0)
                                 {
                                     if(ofe.getValor()==pro.getValor_uni())
                                     {
-                                        if(ofe.getQuantidade() > pro.getQuantidade())
+                                        if(op==0)
                                         {
-                                            
+                                            if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
+                                            {
+                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
+                                                new UsuarioDAO().atualizar(usu);
+                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
+                                                new UsuarioDAO().atualizar(usu);
+                                                ofe.setQuantidade(ofe.getQuantidade()-pro.getQuantidade());
+                                                new OfertasDAO().atualizar(ofe);
+                                                if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                                {
+                                                    new PropriedadeDAO().atualizar(pro, op);
+                                                }
+                                                else
+                                                {
+                                                    new PropriedadeDAO().inserir(pro);
+                                                }
+                                                pro.setQuantidade(0);
+                                                
+                                            }
+                                            else
+                                            {
+                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                int quant = pro.getQuantidade();
+                                                pro.setQuantidade(ofe.getQuantidade());
+                                                usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
+                                                new UsuarioDAO().atualizar(usu);
+                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
+                                                new UsuarioDAO().atualizar(usu);
+                                                if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                                {
+                                                    new PropriedadeDAO().atualizar(pro, op);
+                                                }
+                                                else
+                                                {
+                                                    new PropriedadeDAO().inserir(pro);
+                                                }
+                                                ofe.setQuantidade(0);
+                                                new OfertasDAO().atualizar(ofe);
+                                                pro.setQuantidade(quant-pro.getQuantidade());
+                                                
+                                            }
                                         }
-                                    }
-                                }
-                                else
-                                {
+                                        else
+                                        {
+                                            if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                            {
+                                                if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
+                                                {
+                                                    Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                    usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
+                                                    new UsuarioDAO().atualizar(usu);
+                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                    usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
+                                                    new UsuarioDAO().atualizar(usu);
+                                                    ofe.setQuantidade(ofe.getQuantidade()-pro.getQuantidade());
+                                                    new OfertasDAO().atualizar(ofe);
+                                                    new PropriedadeDAO().atualizar(pro, op);
+                                                    pro.setQuantidade(0);
 
+                                                }
+                                                else
+                                                {
+                                                    Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                    int quant = pro.getQuantidade();
+                                                    pro.setQuantidade(ofe.getQuantidade());
+                                                    usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
+                                                    new UsuarioDAO().atualizar(usu);
+                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                    usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
+                                                    new UsuarioDAO().atualizar(usu);
+                                                    if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                                    {
+                                                        new PropriedadeDAO().atualizar(pro, op);
+                                                    }
+                                                    else
+                                                    {
+                                                        new PropriedadeDAO().inserir(pro);
+                                                    }
+                                                    ofe.setQuantidade(0);
+                                                    new OfertasDAO().atualizar(ofe);
+                                                    pro.setQuantidade(quant-pro.getQuantidade());
+                                                }
+                                            }
+                                        } 
+                                    }
+                                    
                                 }
+                                
 
                             }
                         }

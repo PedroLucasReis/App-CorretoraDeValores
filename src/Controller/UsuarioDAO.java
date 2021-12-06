@@ -83,7 +83,7 @@ public class UsuarioDAO {
     //
     public int atualizar(Usuario us){
         try {
-            String SQL = "update tb_user set nome=?, email=?, telefone=?, data_nasc=?, saldo=? where cpf=md5(?) and senha=md5(?)";
+            String SQL = "update tb_user set nome=?, email=?, telefone=?, data_nasc=?, saldo=? where cpf=md5(?)";
 
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, us.getNome());
@@ -92,7 +92,6 @@ public class UsuarioDAO {
             cmd.setString(4, us.getData());
             cmd.setDouble(5, us.getSaldo());
             cmd.setString(6, us.getCpf());
-            cmd.setString(7, us.getSenha());
             
             //envia a instrução SQL para o banco
             if (cmd.executeUpdate() > 0){
@@ -143,6 +142,37 @@ public class UsuarioDAO {
  
     }
     
+    public Usuario pesquisarCpf(String cpf){
+        try {
+            String SQL="select * from tb_user where "
+                + "cpf=md5(?)";
+
+            cmd = con.prepareStatement(SQL);
+            cmd.setString(1, cpf);
+
+
+            ResultSet rs = cmd.executeQuery();
+            if (rs.next()){
+                Usuario us = new Usuario();
+                us.setNome(rs.getString("nome"));
+                us.setEmail(rs.getString("email"));
+                us.setCpf(cpf);
+                us.setTelefone(rs.getString("telefone"));
+                us.setData(rs.getString("data_nasc"));
+                us.setSaldo(rs.getDouble("saldo"));
+                return us;
+            }else{
+                return null;
+            }
+            
+            
+
+        } catch (Exception e) {
+            System.err.println("ERRO2: " + e.getMessage());
+            return null;
+        }
+ 
+    }
     
     public List<Usuario> confere(){
         try {
