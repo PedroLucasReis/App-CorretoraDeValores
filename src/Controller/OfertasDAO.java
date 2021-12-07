@@ -49,7 +49,6 @@ public class OfertasDAO {
         }
     }
     
-    
     public List<Ofertas> pesquisarTipoId(int tipo, int id){
         try {
             String SQL;
@@ -66,6 +65,45 @@ public class OfertasDAO {
             cmd = con.prepareStatement(SQL);
             cmd.setInt(1, id);
             cmd.setInt(2, tipo);
+
+            List<Ofertas> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()){
+                Ofertas ofe = new Ofertas();
+                ofe.setId(rs.getInt("id"));
+                ofe.setId_empresa(rs.getInt("id_empresa"));
+                ofe.setTipo(rs.getInt("tipo"));
+                ofe.setCpf_user(rs.getString("cpf_user"));
+                ofe.setQuantidade(rs.getInt("quantidade"));
+                ofe.setValor(rs.getDouble("valor"));
+                lista.add(ofe);
+            }
+            return lista;
+            
+        } catch (Exception e) {
+            System.err.println("ERRO2: " + e.getMessage());
+            return null;
+        }
+ 
+    }
+    
+    public List<Ofertas> pesquisarTipoIdValor(int tipo, int id, double valor){
+        try {
+            String SQL;
+            if(tipo==0)
+            {
+                SQL="select * from tb_ofertas where id_empresa=? and tipo=? order by valor desc";
+            }
+            else
+            {
+                SQL="select * from tb_ofertas where id_empresa=? and tipo=? order by valor asc";
+            }
+            
+
+            cmd = con.prepareStatement(SQL);
+            cmd.setInt(1, id);
+            cmd.setInt(2, tipo);
+            cmd.setDouble(3, valor);
 
             List<Ofertas> lista = new ArrayList<>();
             ResultSet rs = cmd.executeQuery();

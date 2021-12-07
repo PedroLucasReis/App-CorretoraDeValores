@@ -23,10 +23,19 @@ public class PropriedadeDAO {
         this.con = Conect.conectar();
     }
     
-    public int inserir(Propriedade pro){
+    public int inserir(Propriedade pro, int tipo){
         try {
-            String SQL = "insert into tb_propriedade "
+            String SQL;
+            if(tipo==0)
+            {
+                SQL = "insert into tb_propriedade "
                        + "(id_empresa, cpf_user, quantidade, valor_uni) values (?,md5(?),?,?)";
+            }
+            else
+            {
+                SQL = "insert into tb_propriedade "
+                       + "(id_empresa, cpf_user, quantidade, valor_uni) values (?,?,?,?)";
+            }
             
             cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             cmd.setInt(1, pro.getId_empresa());
@@ -79,22 +88,34 @@ public class PropriedadeDAO {
         }
     }
     
-    public int atualizar(Propriedade pro, int tipo){
+    public int atualizar(Propriedade pro, int tipo, int tipo2){
         try {
-            String SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
-            Propriedade ext = pesquisarCpfIdValor(pro);
+            String SQL;
+            if(tipo2==0)
+            {
+                SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
+            }
+            else
+            {
+                SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=?";
+            }
+            Propriedade ext = pesquisarCpfIdValor(pro, tipo2);
             int soma;
             if(tipo==0)
             {
                 soma = ext.getQuantidade() + pro.getQuantidade();
             }
-            else
+            else if(tipo==1)
             {
                 soma = ext.getQuantidade() - pro.getQuantidade();
                 if(soma < 0)
                 {
                     return -1;
                 }
+            }
+            else
+            {
+                soma=pro.getQuantidade();
             }
             cmd = con.prepareStatement(SQL);
             cmd.setInt(1, soma);
@@ -116,12 +137,12 @@ public class PropriedadeDAO {
         }
     } 
     
-    public int troca(Propriedade pro, int quant){
+    public int troca(Propriedade pro){
         try {
             String SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
             
             cmd = con.prepareStatement(SQL);
-            cmd.setInt(1, quant);
+            cmd.setInt(1, pro.getQuantidade());
             cmd.setDouble(2, pro.getValor_uni());
             cmd.setInt(3, pro.getId_empresa());
             cmd.setString(4, pro.getCpf_user());
@@ -140,10 +161,20 @@ public class PropriedadeDAO {
         }
     } 
     
-    public Propriedade pesquisarCpfIdValor(Propriedade pro){
+    public Propriedade pesquisarCpfIdValor(Propriedade pro, int tipo){
         try {
-            String SQL="select * from tb_propriedade where "
+            String SQL;
+            if(tipo==0)
+            {
+                SQL="select * from tb_propriedade where "
                 + "cpf_user=md5(?) and id_empresa=? and valor_uni=?";
+            }
+            else
+            {
+                SQL="select * from tb_propriedade where "
+                + "cpf_user=? and id_empresa=? and valor_uni=?";
+            }
+            
 
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, pro.getCpf_user());
@@ -171,10 +202,20 @@ public class PropriedadeDAO {
  
     }
     
-     public List<Propriedade> pesquisarCpfId(String cpf, int id){
+     public List<Propriedade> pesquisarCpfId(String cpf, int id, int tipo){
         try {
-            String SQL="select * from tb_propriedade where "
+            String SQL;
+            if(tipo==0)
+            {
+                SQL="select * from tb_propriedade where "
                 + "cpf_user=md5(?) and id_empresa=?";
+            }
+            else
+            {
+                SQL="select * from tb_propriedade where "
+                + "cpf_user=? and id_empresa=?";
+            }
+            
 
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, cpf);
@@ -200,19 +241,19 @@ public class PropriedadeDAO {
  
     }
     
-    public int veri(Propriedade prop, int tip)
+    public int veri(Propriedade prop, int tip, int tipo)
     {
         
         if(encontrarValorUni(prop,0)==true)
         {
             
-            return atualizar(prop, tip);
+            return atualizar(prop, tip, tipo);
             
             
         }
         else
         {
-            return inserir(prop);
+            return inserir(prop, tipo);
         }
         
     }
