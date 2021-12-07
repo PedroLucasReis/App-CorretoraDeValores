@@ -107,7 +107,31 @@ public class PropriedadeDAO {
         }finally{
             Conect.desconectar(con);
         }
-    }  
+    } 
+    
+    public int troca(Propriedade pro, int quant){
+        try {
+            String SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
+            
+            cmd = con.prepareStatement(SQL);
+            cmd.setInt(1, quant);
+            cmd.setDouble(2, pro.getValor_uni());
+            cmd.setInt(3, pro.getId_empresa());
+            cmd.setString(4, pro.getCpf_user());
+            //envia a instrução SQL para o banco
+            if (cmd.executeUpdate() > 0){
+                //operação realizada com sucesso
+                return 1;   //OK
+            }else{
+                return -1;  // ERRO
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO: " + e.getMessage());
+            return -1;
+        }finally{
+            Conect.desconectar(con);
+        }
+    } 
     
     public Propriedade pesquisarCpfIdValor(Propriedade pro){
         try {
@@ -140,22 +164,22 @@ public class PropriedadeDAO {
  
     }
     
-     public List<Propriedade> pesquisarCpfId(Propriedade pro){
+     public List<Propriedade> pesquisarCpfId(String cpf, int id){
         try {
             String SQL="select * from tb_propriedade where "
                 + "cpf_user=md5(?) and id_empresa=?";
 
             cmd = con.prepareStatement(SQL);
-            cmd.setString(1, pro.getCpf_user());
-            cmd.setInt(2, pro.getId_empresa());
+            cmd.setString(1, cpf);
+            cmd.setInt(2, id);
 
             
             List<Propriedade> lista = new ArrayList<>();
             ResultSet rs = cmd.executeQuery();
             while (rs.next()){
                 Propriedade pros = new Propriedade();
-                pros.setId_empresa(pro.getId_empresa());
-                pros.setCpf_user(pro.getCpf_user());
+                pros.setId_empresa(id);
+                pros.setCpf_user(cpf);
                 pros.setQuantidade(rs.getInt("quantidade"));
                 pros.setValor_uni(rs.getDouble("valor_uni"));
                 lista.add(pros);

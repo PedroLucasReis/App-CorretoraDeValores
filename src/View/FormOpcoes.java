@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormOpcoes extends javax.swing.JInternalFrame {
 
-    int id, op;
+    int id_emp, op;
     double vt;
     PLCRLobby pp;
     Empresa atu;
@@ -80,7 +80,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         tglTipo2 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         lblQuantidade2 = new javax.swing.JLabel();
-        spnQuantidade2 = new javax.swing.JSpinner();
+        spnQuantidade1 = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         lblValor2 = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
@@ -163,7 +163,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlQuantidadeLayout.setVerticalGroup(
             pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(lblQuantidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,12 +396,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         lblQuantidade2.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
         lblQuantidade2.setText("QUANTIDADE:");
 
-        spnQuantidade2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        spnQuantidade2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                spnQuantidade2StateChanged(evt);
-            }
-        });
+        spnQuantidade1.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
+        spnQuantidade1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -411,16 +407,18 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 .addGap(43, 43, 43)
                 .addComponent(lblQuantidade2)
                 .addGap(18, 18, 18)
-                .addComponent(spnQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spnQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spnQuantidade2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(lblQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(spnQuantidade1)
                 .addContainerGap())
         );
 
@@ -488,11 +486,25 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
 
         pnlFinalizar2.setBackground(new java.awt.Color(255, 255, 255));
         pnlFinalizar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 153, 0), 2));
+        pnlFinalizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlFinalizar2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlFinalizar2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlFinalizar2MouseExited(evt);
+            }
+        });
 
         lblFinalizar2.setFont(new java.awt.Font("Game Of Squids", 0, 24)); // NOI18N
         lblFinalizar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFinalizar2.setText("FINALIZAR");
         lblFinalizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFinalizar2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblFinalizar2MouseEntered(evt);
             }
@@ -534,10 +546,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtValorTotal2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtValorTotal2)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -578,20 +590,20 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tglTipo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         tbdMercadoNegociar.addTab("NEGOCIAR", jPanel3);
@@ -632,7 +644,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     .addGroup(pnlGeralLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tbdMercadoNegociar))
         );
 
@@ -668,7 +680,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
 
     private void tbdMercadoNegociarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbdMercadoNegociarMouseClicked
             Empresa emp;
-            emp = new EmpresaDAO().encontrarId(id);
+            emp = new EmpresaDAO().encontrarId(id_emp);
             lblNomeAcao.setText(emp.getNome());
             lblValorAtual.setText("VALOR POR UNIDADE: R$" + emp.getValor());
             atu = emp;
@@ -718,6 +730,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         tglTipo2.setSelected(false);
         tglTipo.setText("COMPRAR");
         tglTipo2.setText("COMPRAR");
+        tglTipo.setForeground(Color.GREEN);
+        tglTipo2.setForeground(Color.GREEN);
         op=0;
     }//GEN-LAST:event_tbdMercadoNegociarStateChanged
 
@@ -762,11 +776,21 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
     }//GEN-LAST:event_txtValorKeyReleased
 
-    private void spnQuantidade2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnQuantidade2StateChanged
-        double tot;
-        tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
-        txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
-    }//GEN-LAST:event_spnQuantidade2StateChanged
+    private void lblFinalizar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizar2MouseClicked
+        confirm2();
+    }//GEN-LAST:event_lblFinalizar2MouseClicked
+
+    private void pnlFinalizar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizar2MouseClicked
+        confirm2();
+    }//GEN-LAST:event_pnlFinalizar2MouseClicked
+
+    private void pnlFinalizar2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizar2MouseEntered
+        mouse(0,1);
+    }//GEN-LAST:event_pnlFinalizar2MouseEntered
+
+    private void pnlFinalizar2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizar2MouseExited
+        mouse(1,1);
+    }//GEN-LAST:event_pnlFinalizar2MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -800,7 +824,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlSenha;
     private javax.swing.JPanel pnlValorTotal;
     private javax.swing.JSpinner spnQuantidade;
-    private javax.swing.JSpinner spnQuantidade2;
+    private javax.swing.JSpinner spnQuantidade1;
     private javax.swing.JTable tbCompras;
     private javax.swing.JTable tbVendas;
     private javax.swing.JTabbedPane tbdMercadoNegociar;
@@ -828,7 +852,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             lblNomeAcao.setText(emp.getNome());
             lblValorAtual.setText("VALOR POR UNIDADE: R$" + emp.getValor());
             atu = emp;
-            id = tip;
+            id_emp = tip;
         }
         configurarTabela();
         preencherTabelaOfertas(new OfertasDAO().pesquisarTipoId(0, tip), new OfertasDAO().pesquisarTipoId(1, tip));
@@ -989,7 +1013,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     else
                     {
                         Propriedade pro = new Propriedade();
-                        pro.setId_empresa(id);
+                        pro.setId_empresa(id_emp);
                         pro.setCpf_user(pp.getDoc());
                         pro.setQuantidade(Integer.parseInt(spnQuantidade.getValue().toString()));
                         pro.setValor_uni(atu.getValor());
@@ -1054,7 +1078,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     
     private void confirm2()
     {
-        if(Integer.parseInt(spnQuantidade2.getValue().toString())==0)
+        if(Integer.parseInt(spnQuantidade1.getValue().toString())==0)
         {
             JOptionPane.showMessageDialog(
                     null,
@@ -1083,13 +1107,28 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
                     double tot;
                     tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
-                    List<Ofertas> lista2 = new OfertasDAO().pesquisarCpfIdTipo(pp.getDoc(), id, op);
-                    int tot2=0;
+                    List<Ofertas> lista2 = new OfertasDAO().pesquisarCpfIdTipo(pp.getDoc(), id_emp, op);
+                    List<Propriedade> lista3 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), id_emp);
+                    int tot2=0, tot3=0, tot4;
                     for(Ofertas ofe2 : lista2)
                     {
                         tot2=tot2+ofe2.getQuantidade();
                     }
-                    if(us.getSaldo() < tot && op==0)
+                    for(Propriedade propr : lista3)
+                    {
+                        tot3=tot3+propr.getQuantidade();
+                    }
+                    tot4=tot3-tot2;
+                    if(Integer.parseInt(spnQuantidade.getValue().toString())>tot4 && op==1)
+                    {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "VOCÊ SÓ PODE VENDER "+tot+" AÇÕES DESSA EMPRESA",
+                                "QUANTIDADE",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                    }
+                    else if(us.getSaldo() < tot && op==0)
                     {
                         JOptionPane.showMessageDialog(
                                 null,
@@ -1101,18 +1140,18 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     else
                     {
                         Propriedade pro = new Propriedade();
-                        pro.setId_empresa(id);
+                        pro.setId_empresa(id_emp);
                         pro.setCpf_user(pp.getDoc());
-                        pro.setQuantidade(Integer.parseInt(spnQuantidade2.getValue().toString()));
+                        pro.setQuantidade(Integer.parseInt(spnQuantidade1.getValue().toString()));
                         pro.setValor_uni(Double.parseDouble(txtValor.getText()));
                         List<Ofertas> lista;
                         if(op==0)
                         {
-                            lista = new OfertasDAO().pesquisarTipoId(1, id);
+                            lista = new OfertasDAO().pesquisarTipoId(1, id_emp);
                         }
                         else
                         {
-                            lista = new OfertasDAO().pesquisarTipoId(0, id);
+                            lista = new OfertasDAO().pesquisarTipoId(0, id_emp);
                         }
                         if(lista!=null)
                         {
@@ -1124,6 +1163,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                     {
                                         if(op==0)
                                         {
+                                            
                                             if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
                                             {
                                                 Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
@@ -1142,7 +1182,23 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                 {
                                                     new PropriedadeDAO().inserir(pro);
                                                 }
-                                                pro.setQuantidade(0);
+                                                lista3 = new PropriedadeDAO().pesquisarCpfId(ofe.getCpf_user(), id_emp);
+                                                for(Propriedade prop2 : lista3)//venda
+                                                {
+                                                    Propriedade prop3 = prop2;
+                                                    if(prop2.getQuantidade()<pro.getQuantidade())
+                                                    {
+                                                       pro.setQuantidade(pro.getQuantidade()-prop2.getQuantidade()); 
+                                                       prop2.setQuantidade(0);
+                                                    }
+                                                    else
+                                                    {
+                                                        prop2.setQuantidade(prop2.getQuantidade()-pro.getQuantidade());
+                                                        pro.setQuantidade(0);
+                                                    }
+                                                   new PropriedadeDAO().troca(prop2, prop3.getQuantidade());
+                                                }
+                                               
                                                 
                                             }
                                             else
@@ -1168,6 +1224,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                 pro.setQuantidade(quant-pro.getQuantidade());
                                                 
                                             }
+                                            
                                         }
                                         else
                                         {
@@ -1185,26 +1242,33 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                     new OfertasDAO().atualizar(ofe);
                                                     new PropriedadeDAO().atualizar(pro, op);
                                                     pro.setQuantidade(0);
-
+                                                    for(Propriedade prop2 : lista3)//venda
+                                                    {
+                                                        Propriedade prop3 = prop2;
+                                                        if(prop2.getQuantidade()<pro.getQuantidade())
+                                                        {
+                                                           pro.setQuantidade(pro.getQuantidade()-prop2.getQuantidade()); 
+                                                           prop2.setQuantidade(0);
+                                                        }
+                                                        else
+                                                        {
+                                                            prop2.setQuantidade(prop2.getQuantidade()-pro.getQuantidade());
+                                                            pro.setQuantidade(0);
+                                                        }
+                                                       new PropriedadeDAO().troca(prop2, prop3.getQuantidade());
+                                                    }
                                                 }
                                                 else
                                                 {
                                                     Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
                                                     int quant = pro.getQuantidade();
                                                     pro.setQuantidade(ofe.getQuantidade());
-                                                    usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
-                                                    new UsuarioDAO().atualizar(usu);
-                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
                                                     usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
                                                     new UsuarioDAO().atualizar(usu);
-                                                    if(new PropriedadeDAO().encontrarValorUni(pro)==true)
-                                                    {
-                                                        new PropriedadeDAO().atualizar(pro, op);
-                                                    }
-                                                    else
-                                                    {
-                                                        new PropriedadeDAO().inserir(pro);
-                                                    }
+                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                    usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
+                                                    new UsuarioDAO().atualizar(usu);
+                                                    new PropriedadeDAO().atualizar(pro, op);
                                                     ofe.setQuantidade(0);
                                                     new OfertasDAO().atualizar(ofe);
                                                     pro.setQuantidade(quant-pro.getQuantidade());
@@ -1217,16 +1281,48 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                 
 
                             }
+                            if(pro.getQuantidade()!=0)
+                            {
+                                Ofertas ofefi = new Ofertas();
+                                ofefi.setCpf_user(pp.getDoc());
+                                ofefi.setId_empresa(id_emp);
+                                ofefi.setQuantidade(pro.getQuantidade());
+                                ofefi.setTipo(op);
+                                ofefi.setValor(atu.getValor());
+                                new OfertasDAO().inserir(ofefi);
+                            }
+                            
+                            
                         }
-                        
-                        
-                        
-                        PropriedadeDAO prodao = new PropriedadeDAO();
-                        int resul = prodao.veri(pro, op);
-                        
+                        else
+                        {
+                            Ofertas ofefi = new Ofertas();
+                            ofefi.setCpf_user(pp.getDoc());
+                            ofefi.setId_empresa(id_emp);
+                            ofefi.setQuantidade(pro.getQuantidade());
+                            ofefi.setTipo(op);
+                            ofefi.setValor(atu.getValor());
+                            new OfertasDAO().inserir(ofefi);
+                        }
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "OFERTA POSTADA!",
+                            "OFERTA",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        this.dispose();
                     }
 
 
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(
+                    null,
+                    "SENHA INCORRETA!",
+                    "VALIDAÇÃO",
+                    JOptionPane.ERROR_MESSAGE
+                    );
                 }
             }
         }
