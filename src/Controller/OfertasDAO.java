@@ -23,7 +23,7 @@ public class OfertasDAO {
     
     public int inserir(Ofertas ofe){
         try {
-            String SQL = "insert into tb_propriedade "
+            String SQL = "insert into tb_ofertas "
                        + "(id_empresa, cpf_user, quantidade, valor, tipo) values (?,md5(?),?,?,?)";
             
             cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -79,8 +79,9 @@ public class OfertasDAO {
                 ofe.setValor(rs.getDouble("valor"));
                 lista.add(ofe);
             }
+            System.err.println("ERRO2: ");
             return lista;
-
+            
         } catch (Exception e) {
             System.err.println("ERRO2: " + e.getMessage());
             return null;
@@ -90,7 +91,7 @@ public class OfertasDAO {
     
      public List<Ofertas> pesquisarCpfIdTipo(String cpf, int id, int tipo){
         try {
-            String SQL="select * from tb_ofertas where id_empresa=? and cpf=md5(?) and tipo=?";
+            String SQL="select * from tb_ofertas where id_empresa=? and cpf_user=md5(?) and tipo=?";
             cmd = con.prepareStatement(SQL);
             cmd.setInt(1, id);
             cmd.setString(2, cpf);

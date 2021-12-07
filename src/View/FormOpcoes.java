@@ -163,7 +163,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlQuantidadeLayout.setVerticalGroup(
             pnlQuantidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlQuantidadeLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(lblQuantidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spnQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,16 +285,17 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlInfoLayout.createSequentialGroup()
+                        .addComponent(pnlQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(pnlSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(93, 93, 93))
         );
         pnlInfoLayout.setVerticalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +321,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     .addComponent(lblValorAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(pnlMercadoLayout.createSequentialGroup()
-                .addGap(293, 293, 293)
+                .addGap(399, 399, 399)
                 .addComponent(tglTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -329,9 +330,9 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(pnlMercadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblValorAtual)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(tglTipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -396,29 +397,31 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         lblQuantidade2.setFont(new java.awt.Font("Game Of Squids", 0, 18)); // NOI18N
         lblQuantidade2.setText("QUANTIDADE:");
 
-        spnQuantidade1.setFont(new java.awt.Font("Game Of Squids", 0, 14)); // NOI18N
         spnQuantidade1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnQuantidade1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnQuantidade1StateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
                 .addComponent(lblQuantidade2)
                 .addGap(18, 18, 18)
-                .addComponent(spnQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spnQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spnQuantidade1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnQuantidade1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(lblQuantidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -439,11 +442,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(lblValor2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,7 +471,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
                 .addComponent(lblSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -518,7 +521,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         pnlFinalizar2Layout.setHorizontalGroup(
             pnlFinalizar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFinalizar2Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(33, 33, 33)
                 .addComponent(lblFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -526,7 +529,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             pnlFinalizar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFinalizar2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -546,10 +550,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtValorTotal2)
-                .addGap(26, 26, 26))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtValorTotal2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -559,51 +563,50 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(tglTipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlFinalizar2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlFinalizar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(tglTipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tglTipo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tglTipo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlFinalizar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         tbdMercadoNegociar.addTab("NEGOCIAR", jPanel3);
@@ -628,23 +631,23 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             pnlGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tbdMercadoNegociar)
             .addGroup(pnlGeralLayout.createSequentialGroup()
-                .addGap(267, 267, 267)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(326, 326, 326)
                 .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlGeralLayout.setVerticalGroup(
             pnlGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGeralLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlGeralLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlGeralLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGeralLayout.createSequentialGroup()
+                        .addComponent(lblNomeAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(tbdMercadoNegociar))
         );
 
@@ -732,6 +735,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         tglTipo2.setText("COMPRAR");
         tglTipo.setForeground(Color.GREEN);
         tglTipo2.setForeground(Color.GREEN);
+        Operacao(0,0);
+        Operacao(0,1);
         op=0;
     }//GEN-LAST:event_tbdMercadoNegociarStateChanged
 
@@ -771,9 +776,17 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCloseMouseClicked
 
     private void txtValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyReleased
-        double tot;
-        tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
-        txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
+        
+        if(txtValor.getText().equals("")==false)
+        {
+            double tot;
+            tot = Integer.parseInt(spnQuantidade1.getValue().toString()) * Double.parseDouble(txtValor.getText());
+            txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
+        }
+        else
+        {
+            txtValorTotal2.setText("VALOR TOTAL: R$ 0");
+        }
     }//GEN-LAST:event_txtValorKeyReleased
 
     private void lblFinalizar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFinalizar2MouseClicked
@@ -791,6 +804,19 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
     private void pnlFinalizar2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFinalizar2MouseExited
         mouse(1,1);
     }//GEN-LAST:event_pnlFinalizar2MouseExited
+
+    private void spnQuantidade1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnQuantidade1StateChanged
+        if(txtValor.getText().equals("")==false)
+        {
+            double tot;
+            tot = Integer.parseInt(spnQuantidade1.getValue().toString()) * Double.parseDouble(txtValor.getText());
+            txtValorTotal2.setText("VALOR TOTAL: R$ " + tot);
+        }
+        else
+        {
+            txtValorTotal2.setText("VALOR TOTAL: R$ 0");
+        }
+    }//GEN-LAST:event_spnQuantidade1StateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -854,7 +880,8 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             atu = emp;
             id_emp = tip;
         }
-        configurarTabela();
+        configurarTabelaCompras();
+        configurarTabelaVendas();
         preencherTabelaOfertas(new OfertasDAO().pesquisarTipoId(0, tip), new OfertasDAO().pesquisarTipoId(1, tip));
     }
  
@@ -1092,33 +1119,46 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
             if(txtSenha2.getPassword().length<10)
             {
                 JOptionPane.showMessageDialog(
+                    null,
+                    "A senha deve ter no minimo 10 caracteres",
+                    "Operação",
+                    JOptionPane.ERROR_MESSAGE
+                );
+
+            }
+            else if(txtValor.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(
                         null,
-                        "A senha deve ter no minimo 10 caracteres",
-                        "Operação",
+                        "É OBRIGATORIO DIGITAR O VALOR QUE IRA OFERTAR!",
+                        "VALOR",
                         JOptionPane.ERROR_MESSAGE
                     );
-
             }
             else
             {
-                if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha.getPassword()))){
+                if (new UsuarioDAO().login(pp.getDoc(), new String(txtSenha2.getPassword()))){
 
                     //login realizado com sucesso!
-                    Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha.getPassword()));
+                    Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha2.getPassword()));
                     double tot;
                     tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
-                    List<Ofertas> lista2 = new OfertasDAO().pesquisarCpfIdTipo(pp.getDoc(), id_emp, op);
+                    
                     List<Propriedade> lista3 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), id_emp);
-                    int tot2=0, tot3=0, tot4;
-                    for(Ofertas ofe2 : lista2)
+                    int tot2=0, tot3=0, tot4=0;
+                    List<Ofertas> lista2 = new OfertasDAO().pesquisarCpfIdTipo(pp.getDoc(), id_emp, op);
+                    if(lista2!=null)
                     {
-                        tot2=tot2+ofe2.getQuantidade();
+                        for(Ofertas ofe2 : lista2)
+                        {
+                            tot2=tot2+ofe2.getQuantidade();
+                        }
+                        for(Propriedade propr : lista3)
+                        {
+                            tot3=tot3+propr.getQuantidade();
+                        }
+                        tot4=tot3-tot2;
                     }
-                    for(Propriedade propr : lista3)
-                    {
-                        tot3=tot3+propr.getQuantidade();
-                    }
-                    tot4=tot3-tot2;
                     if(Integer.parseInt(spnQuantidade.getValue().toString())>tot4 && op==1)
                     {
                         JOptionPane.showMessageDialog(
@@ -1328,53 +1368,86 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
         }
     }
     
-    
-    private void configurarTabela() {
-        DefaultTableModel m = new DefaultTableModel() {
+    private void configurarTabelaCompras() {
+        DefaultTableModel m1 = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        m.addColumn("QUANTIDADE");
-        m.addColumn("VALOR");
+        m1.addColumn("ID");
+        m1.addColumn("QUANTIDADE");
+        m1.addColumn("VALOR");
+        tbCompras.setModel(m1);
+    }
+    
+    private void configurarTabelaVendas() {
+        DefaultTableModel m2 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        m2.addColumn("ID");
+        m2.addColumn("QUANTIDADE");
+        m2.addColumn("VALOR");
         
-        tbCompras.setModel(m);
-        tbVendas.setModel(m);
+        tbVendas.setModel(m2);
     }
     
     private void preencherTabelaOfertas(List<Ofertas> comp, List<Ofertas> vend) {
         if (comp != null) {
             if (comp.size() > 0) {
-                DefaultTableModel m = (DefaultTableModel)tbCompras.getModel();
-                for(Ofertas com : comp){
-                    m.addRow(new Object[]
+                configurarTabelaCompras();
+                DefaultTableModel m1 = (DefaultTableModel)tbCompras.getModel();
+                for(Ofertas of : comp){
+                    m1.addRow(new Object[]
                         {
-                            com.getId_empresa(),
-                            com.getQuantidade()
+                        
+                            of.getId(),
+                            of.getQuantidade(),
+                            of.getValor()
                         }
                     );
                 }
-                tbCompras.setModel(m);
+                tbCompras.setModel(m1);
             } else {
-                configurarTabela();
+                configurarTabelaCompras();
+                JOptionPane.showMessageDialog(null, "A tabela não contém dados.", "Pesquisa",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             }
-        } 
+        } else {
+            JOptionPane.showMessageDialog(null,"Ocorreu um erro.","Pesquisa",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
         if (vend != null) {
             if (vend.size() > 0) {
-                DefaultTableModel m = (DefaultTableModel)tbVendas.getModel();
-                for(Ofertas ven : vend){
-                    m.addRow(new Object[]
+                configurarTabelaVendas();
+                DefaultTableModel m2 = (DefaultTableModel)tbVendas.getModel();
+                for(Ofertas of : vend){
+                    m2.addRow(new Object[]
                         {
-                            ven.getId_empresa(),
-                            ven.getQuantidade()
+                        
+                            of.getId(),
+                            of.getQuantidade(),
+                            of.getValor()
                         }
                     );
                 }
-                tbVendas.setModel(m);
+                tbCompras.setModel(m2);
             } else {
-                configurarTabela();
+                configurarTabelaVendas();
+                JOptionPane.showMessageDialog(null, "A tabela não contém dados.", "Pesquisa",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             }
+        } else {
+            JOptionPane.showMessageDialog(null,"Ocorreu um erro.","Pesquisa",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
        
         
