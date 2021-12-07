@@ -81,10 +81,17 @@ public class UsuarioDAO {
     //
     // ATUALIZAR
     //
-    public int atualizar(Usuario us){
+    public int atualizar(Usuario us, int tipo){
         try {
-            String SQL = "update tb_user set nome=?, email=?, telefone=?, data_nasc=?, saldo=? where cpf=md5(?)";
-
+            String SQL;
+            if(tipo==0)
+            {
+                SQL = "update tb_user set nome=?, email=?, telefone=?, data_nasc=?, saldo=? where cpf=md5(?)";
+            }
+            else
+            {
+                SQL = "update tb_user set nome=?, email=?, telefone=?, data_nasc=?, saldo=? where cpf=?";
+            }
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, us.getNome());
             cmd.setString(2, us.getEmail());

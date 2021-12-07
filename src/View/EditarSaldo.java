@@ -293,7 +293,7 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
                 {
                     valort = us.getSaldo() + sldSaldo.getValue();
                     us.setSaldo(valort);
-                    int ret = new UsuarioDAO().atualizar(us);
+                    int ret = new UsuarioDAO().atualizar(us,0);
                     if(ret==1)
                     {
                         JOptionPane.showMessageDialog(
@@ -323,7 +323,7 @@ public class EditarSaldo extends javax.swing.JInternalFrame {
                     {
                         valort = us.getSaldo() - sldSaldo.getValue();
                         us.setSaldo(valort);
-                        int ret = new UsuarioDAO().atualizar(us);
+                        int ret = new UsuarioDAO().atualizar(us,0);
                         if(ret==1)
                         {
                             JOptionPane.showMessageDialog(

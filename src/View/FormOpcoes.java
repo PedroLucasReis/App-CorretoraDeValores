@@ -1069,7 +1069,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                     JOptionPane.INFORMATION_MESSAGE
                                 );
                             }
-                            new UsuarioDAO().atualizar(us);
+                            new UsuarioDAO().atualizar(us,0);
                             pp.atualizar( new String(txtSenha.getPassword()));
                             this.dispose();
                         }
@@ -1208,13 +1208,13 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                             {
                                                 Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
                                                 usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
-                                                new UsuarioDAO().atualizar(usu);
+                                                new UsuarioDAO().atualizar(usu,0);
                                                 usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                 usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
-                                                new UsuarioDAO().atualizar(usu);
+                                                new UsuarioDAO().atualizar(usu,0);
                                                 ofe.setQuantidade(ofe.getQuantidade()-pro.getQuantidade());
                                                 new OfertasDAO().atualizar(ofe);
-                                                if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                                if(new PropriedadeDAO().encontrarValorUni(pro,0)==true)
                                                 {
                                                     new PropriedadeDAO().atualizar(pro, op);
                                                 }
@@ -1226,7 +1226,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                 for(Propriedade prop2 : lista3)//venda
                                                 {
                                                     Propriedade prop3 = prop2;
-                                                    if(prop2.getQuantidade()<pro.getQuantidade())
+                                                    if(prop2.getQuantidade()<=pro.getQuantidade())
                                                     {
                                                        pro.setQuantidade(pro.getQuantidade()-prop2.getQuantidade()); 
                                                        prop2.setQuantidade(0);
@@ -1247,11 +1247,11 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                 int quant = pro.getQuantidade();
                                                 pro.setQuantidade(ofe.getQuantidade());
                                                 usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
-                                                new UsuarioDAO().atualizar(usu);
+                                                new UsuarioDAO().atualizar(usu,0);
                                                 usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                 usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
-                                                new UsuarioDAO().atualizar(usu);
-                                                if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                                new UsuarioDAO().atualizar(usu,0);
+                                                if(new PropriedadeDAO().encontrarValorUni(pro,0)==true)
                                                 {
                                                     new PropriedadeDAO().atualizar(pro, op);
                                                 }
@@ -1268,24 +1268,26 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                         }
                                         else
                                         {
-                                            if(new PropriedadeDAO().encontrarValorUni(pro)==true)
+                                            
+                                            if(new PropriedadeDAO().encontrarValorUni(pro,0)==true)
                                             {
                                                 if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
                                                 {
                                                     Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
-                                                    usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
-                                                    new UsuarioDAO().atualizar(usu);
+                                                    usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*Double.parseDouble(txtValor.getText())));
+                                                    new UsuarioDAO().atualizar(usu, 1);
                                                     usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
-                                                    usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
-                                                    new UsuarioDAO().atualizar(usu);
+                                                    usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*Double.parseDouble(txtValor.getText())));
+                                                    new UsuarioDAO().atualizar(usu,1);
                                                     ofe.setQuantidade(ofe.getQuantidade()-pro.getQuantidade());
                                                     new OfertasDAO().atualizar(ofe);
                                                     new PropriedadeDAO().atualizar(pro, op);
                                                     pro.setQuantidade(0);
+                                                    lista3 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), id_emp);
                                                     for(Propriedade prop2 : lista3)//venda
                                                     {
                                                         Propriedade prop3 = prop2;
-                                                        if(prop2.getQuantidade()<pro.getQuantidade())
+                                                        if(prop2.getQuantidade()<=pro.getQuantidade())
                                                         {
                                                            pro.setQuantidade(pro.getQuantidade()-prop2.getQuantidade()); 
                                                            prop2.setQuantidade(0);
@@ -1304,10 +1306,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                     int quant = pro.getQuantidade();
                                                     pro.setQuantidade(ofe.getQuantidade());
                                                     usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
-                                                    new UsuarioDAO().atualizar(usu);
+                                                    new UsuarioDAO().atualizar(usu,0);
                                                     usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                     usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
-                                                    new UsuarioDAO().atualizar(usu);
+                                                    new UsuarioDAO().atualizar(usu,0);
                                                     new PropriedadeDAO().atualizar(pro, op);
                                                     ofe.setQuantidade(0);
                                                     new OfertasDAO().atualizar(ofe);
@@ -1328,7 +1330,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                 ofefi.setId_empresa(id_emp);
                                 ofefi.setQuantidade(pro.getQuantidade());
                                 ofefi.setTipo(op);
-                                ofefi.setValor(atu.getValor());
+                                ofefi.setValor(Double.parseDouble(txtValor.getText()));
                                 new OfertasDAO().inserir(ofefi);
                             }
                             
@@ -1341,15 +1343,16 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                             ofefi.setId_empresa(id_emp);
                             ofefi.setQuantidade(pro.getQuantidade());
                             ofefi.setTipo(op);
-                            ofefi.setValor(atu.getValor());
+                            ofefi.setValor(Double.parseDouble(txtValor.getText()));
                             new OfertasDAO().inserir(ofefi);
                         }
                         JOptionPane.showMessageDialog(
                             null,
-                            "OFERTA POSTADA!",
+                            "OFERTAS ATUALIZADAS!!",
                             "OFERTA",
                             JOptionPane.INFORMATION_MESSAGE
                         );
+                        pp.atualizar( new String(txtSenha2.getPassword()));
                         this.dispose();
                     }
 
@@ -1401,22 +1404,21 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 configurarTabelaCompras();
                 DefaultTableModel m1 = (DefaultTableModel)tbCompras.getModel();
                 for(Ofertas of : comp){
-                    m1.addRow(new Object[]
-                        {
-                        
-                            of.getId(),
-                            of.getQuantidade(),
-                            of.getValor()
-                        }
-                    );
+                    if(of.getQuantidade()>0)
+                    {
+                        m1.addRow(new Object[]
+                            {
+
+                                of.getId(),
+                                of.getQuantidade(),
+                                of.getValor()
+                            }
+                        );
+                    }
+                    
                 }
                 tbCompras.setModel(m1);
-            } else {
-                configurarTabelaCompras();
-                JOptionPane.showMessageDialog(null, "A tabela não contém dados.", "Pesquisa",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
+            } 
         } else {
             JOptionPane.showMessageDialog(null,"Ocorreu um erro.","Pesquisa",
                     JOptionPane.ERROR_MESSAGE
@@ -1428,22 +1430,20 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                 configurarTabelaVendas();
                 DefaultTableModel m2 = (DefaultTableModel)tbVendas.getModel();
                 for(Ofertas of : vend){
-                    m2.addRow(new Object[]
-                        {
-                        
-                            of.getId(),
-                            of.getQuantidade(),
-                            of.getValor()
-                        }
-                    );
+                    if(of.getQuantidade()>0)
+                    {
+                        m2.addRow(new Object[]
+                            {
+
+                                of.getId(),
+                                of.getQuantidade(),
+                                of.getValor()
+                            }
+                        );
+                    }
                 }
-                tbCompras.setModel(m2);
-            } else {
-                configurarTabelaVendas();
-                JOptionPane.showMessageDialog(null, "A tabela não contém dados.", "Pesquisa",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
+                tbVendas.setModel(m2);
+            } 
         } else {
             JOptionPane.showMessageDialog(null,"Ocorreu um erro.","Pesquisa",
                     JOptionPane.ERROR_MESSAGE

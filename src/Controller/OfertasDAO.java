@@ -79,7 +79,6 @@ public class OfertasDAO {
                 ofe.setValor(rs.getDouble("valor"));
                 lista.add(ofe);
             }
-            System.err.println("ERRO2: ");
             return lista;
             
         } catch (Exception e) {
@@ -120,16 +119,15 @@ public class OfertasDAO {
     
     public int atualizar(Ofertas ofe){
         try {
-            String SQL = "update tb_ofertas set cpf_user=md5(?), id_empresa=?, "
+            String SQL = "update tb_ofertas set id_empresa=?, "
                     + "quantidade=?, tipo=?, valor=? where id=?";
 
             cmd = con.prepareStatement(SQL);
-            cmd.setString(1,ofe.getCpf_user());
-            cmd.setInt(2,ofe.getId_empresa());
-            cmd.setInt(3,ofe.getQuantidade());
-            cmd.setInt(4,ofe.getTipo());
-            cmd.setDouble(5,ofe.getValor());
-            cmd.setInt(6,ofe.getId());
+            cmd.setInt(1,ofe.getId_empresa());
+            cmd.setInt(2,ofe.getQuantidade());
+            cmd.setInt(3,ofe.getTipo());
+            cmd.setDouble(4,ofe.getValor());
+            cmd.setInt(5,ofe.getId());
             
             
             if (cmd.executeUpdate() > 0){

@@ -49,11 +49,18 @@ public class PropriedadeDAO {
         }
     }
     
-    public boolean encontrarValorUni(Propriedade pro){
+    public boolean encontrarValorUni(Propriedade pro, int tipo){
        try 
        {
-
-            String SQL="select * from tb_propriedade where valor_uni=? and id_empresa=? and cpf_user=md5(?)";
+           String SQL;
+           if(tipo==0)
+           {
+               SQL="select * from tb_propriedade where valor_uni=? and id_empresa=? and cpf_user=md5(?)";
+           }
+           else
+           {
+               SQL="select * from tb_propriedade where valor_uni=? and id_empresa=? and cpf_user=?";
+           }
 
             cmd = con.prepareStatement(SQL);
             cmd.setDouble(1, pro.getValor_uni());
@@ -196,7 +203,7 @@ public class PropriedadeDAO {
     public int veri(Propriedade prop, int tip)
     {
         
-        if(encontrarValorUni(prop)==true)
+        if(encontrarValorUni(prop,0)==true)
         {
             
             return atualizar(prop, tip);
