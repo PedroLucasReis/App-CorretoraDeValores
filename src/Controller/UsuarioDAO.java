@@ -142,10 +142,20 @@ public class UsuarioDAO {
  
     }
     
-    public Usuario pesquisarCpf(String cpf){
+    public Usuario pesquisarCpf(String cpf, int tipo){
         try {
-            String SQL="select * from tb_user where "
+            String SQL;
+            if(tipo==0)
+            {
+                SQL="select * from tb_user where "
+                + "cpf=?";
+            }
+            else
+            {
+                SQL="select * from tb_user where "
                 + "cpf=md5(?)";
+            }
+            
 
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, cpf);
@@ -161,12 +171,8 @@ public class UsuarioDAO {
                 us.setData(rs.getString("data_nasc"));
                 us.setSaldo(rs.getDouble("saldo"));
                 return us;
-            }else{
-                return null;
             }
-            
-            
-
+            return null;
         } catch (Exception e) {
             System.err.println("ERRO2: " + e.getMessage());
             return null;

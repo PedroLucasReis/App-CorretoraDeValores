@@ -1206,10 +1206,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                             
                                             if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
                                             {
-                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
                                                 usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
                                                 new UsuarioDAO().atualizar(usu);
-                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                 usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
                                                 new UsuarioDAO().atualizar(usu);
                                                 ofe.setQuantidade(ofe.getQuantidade()-pro.getQuantidade());
@@ -1243,12 +1243,12 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                             }
                                             else
                                             {
-                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
                                                 int quant = pro.getQuantidade();
                                                 pro.setQuantidade(ofe.getQuantidade());
                                                 usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
                                                 new UsuarioDAO().atualizar(usu);
-                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                 usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
                                                 new UsuarioDAO().atualizar(usu);
                                                 if(new PropriedadeDAO().encontrarValorUni(pro)==true)
@@ -1272,10 +1272,10 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                             {
                                                 if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
                                                 {
-                                                    Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                    Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
                                                     usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
                                                     new UsuarioDAO().atualizar(usu);
-                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                     usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
                                                     new UsuarioDAO().atualizar(usu);
                                                     ofe.setQuantidade(ofe.getQuantidade()-pro.getQuantidade());
@@ -1300,12 +1300,12 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                                                 }
                                                 else
                                                 {
-                                                    Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user());
+                                                    Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
                                                     int quant = pro.getQuantidade();
                                                     pro.setQuantidade(ofe.getQuantidade());
                                                     usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*pro.getValor_uni()));
                                                     new UsuarioDAO().atualizar(usu);
-                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc());
+                                                    usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
                                                     usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*pro.getValor_uni()));
                                                     new UsuarioDAO().atualizar(usu);
                                                     new PropriedadeDAO().atualizar(pro, op);
