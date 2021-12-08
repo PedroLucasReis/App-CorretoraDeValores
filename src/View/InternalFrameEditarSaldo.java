@@ -16,21 +16,21 @@ import javax.swing.JOptionPane;
  *
  * @author Pichau
  */
-public class EditarSaldo extends javax.swing.JInternalFrame {
+public class InternalFrameEditarSaldo extends javax.swing.JInternalFrame {
 
     private PLCRLobby ant;
     private int op;
     /**
      * Creates new form EditarSaldo
      */
-    public EditarSaldo() {
+    public InternalFrameEditarSaldo() {
         initComponents();
         ConfigurarForm();
         op=0;
         Operacao(0);
     }
     
-    public EditarSaldo(PLCRLobby back) {
+    public InternalFrameEditarSaldo(PLCRLobby back) {
         initComponents();
         ConfigurarForm();
         ant = back;

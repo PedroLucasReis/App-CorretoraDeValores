@@ -49,13 +49,12 @@ public class PLCRLobby extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenuWeg = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        MenuItau = new javax.swing.JMenuItem();
+        MenuVale = new javax.swing.JMenuItem();
+        MenuAmbev = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        MenuMostrar = new javax.swing.JMenuItem();
         MenuSaldo = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,26 +117,46 @@ public class PLCRLobby extends javax.swing.JFrame {
         });
         jMenu1.add(MenuWeg);
 
-        jMenuItem2.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
-        jMenuItem2.setText("Itau");
-        jMenu1.add(jMenuItem2);
+        MenuItau.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
+        MenuItau.setText("Itau");
+        MenuItau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItauActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuItau);
 
-        jMenuItem3.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
-        jMenuItem3.setText("Vale");
-        jMenu1.add(jMenuItem3);
+        MenuVale.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
+        MenuVale.setText("Vale");
+        MenuVale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuValeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuVale);
 
-        jMenuItem4.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
-        jMenuItem4.setText("Ambev");
-        jMenu1.add(jMenuItem4);
+        MenuAmbev.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
+        MenuAmbev.setText("Ambev");
+        MenuAmbev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAmbevActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuAmbev);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Perfil");
         jMenu2.setFont(new java.awt.Font("Corbel Light", 0, 14)); // NOI18N
 
-        jMenuItem5.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
-        jMenuItem5.setText("Editar");
-        jMenu2.add(jMenuItem5);
+        MenuMostrar.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
+        MenuMostrar.setText("Mostrar");
+        MenuMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMostrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuMostrar);
 
         MenuSaldo.setFont(new java.awt.Font("Game Of Squids", 0, 12)); // NOI18N
         MenuSaldo.setText("Saldo");
@@ -149,10 +168,6 @@ public class PLCRLobby extends javax.swing.JFrame {
         jMenu2.add(MenuSaldo);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Ajuda");
-        jMenu3.setFont(new java.awt.Font("Corbel Light", 0, 14)); // NOI18N
-        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -175,8 +190,24 @@ public class PLCRLobby extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuWegActionPerformed
 
     private void MenuSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldoActionPerformed
-        abrirForm(new EditarSaldo(pp));
+        abrirForm(new InternalFrameEditarSaldo(pp));
     }//GEN-LAST:event_MenuSaldoActionPerformed
+
+    private void MenuItauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItauActionPerformed
+        abrirForm(new FormOpcoes(2, pp));
+    }//GEN-LAST:event_MenuItauActionPerformed
+
+    private void MenuValeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuValeActionPerformed
+        abrirForm(new FormOpcoes(3, pp));
+    }//GEN-LAST:event_MenuValeActionPerformed
+
+    private void MenuAmbevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAmbevActionPerformed
+       abrirForm(new FormOpcoes(4, pp));
+    }//GEN-LAST:event_MenuAmbevActionPerformed
+
+    private void MenuMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMostrarActionPerformed
+        abrirForm(new InternalFrameMostrarUsuarios());
+    }//GEN-LAST:event_MenuMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,16 +247,15 @@ public class PLCRLobby extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane AreaTrabalho;
+    private javax.swing.JMenuItem MenuAmbev;
+    private javax.swing.JMenuItem MenuItau;
+    private javax.swing.JMenuItem MenuMostrar;
     private javax.swing.JMenuItem MenuSaldo;
+    private javax.swing.JMenuItem MenuVale;
     private javax.swing.JMenuItem MenuWeg;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSaldo;

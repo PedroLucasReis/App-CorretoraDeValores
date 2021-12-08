@@ -1142,7 +1142,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                     //login realizado com sucesso!
                     Usuario us = new UsuarioDAO().pesquisarCpfSenha(pp.getDoc(), new String(txtSenha2.getPassword()));
                     double tot;
-                    tot = Integer.parseInt(spnQuantidade.getValue().toString()) * Double.parseDouble(txtValor.getText());
+                    tot = Integer.parseInt(spnQuantidade1.getValue().toString()) * Double.parseDouble(txtValor.getText());
                     
                     List<Propriedade> lista3 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), id_emp,0);
                     int tot2=0, tot3=0, tot4=0;
@@ -1159,7 +1159,7 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         }
                         tot4=tot3-tot2;
                     }
-                    if(Integer.parseInt(spnQuantidade.getValue().toString())>=tot4 && op==1)
+                    if(Integer.parseInt(spnQuantidade1.getValue().toString())>=tot4 && op==1)
                     {
                         JOptionPane.showMessageDialog(
                                 null,
@@ -1182,273 +1182,92 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         List<Ofertas> lista;
                         if(op==0)
                         {
-                            lista = new OfertasDAO().pesquisarTipoId(1, id_emp);
+                            lista = new OfertasDAO().pesquisarTipoIdValor(1, id_emp, Double.parseDouble(txtValor.getText()));
                         }
                         else
                         {
-                            lista = new OfertasDAO().pesquisarTipoId(0, id_emp);
+                            lista = new OfertasDAO().pesquisarTipoIdValor(0, id_emp, Double.parseDouble(txtValor.getText()));
                         }
-                        
-                        
-                        
-                        
-                        Propriedade pro = new Propriedade();
-                        pro.setId_empresa(id_emp);
-                        pro.setCpf_user(pp.getDoc());
-                        pro.setQuantidade(Integer.parseInt(spnQuantidade1.getValue().toString()));
-                        pro.setValor_uni(Double.parseDouble(txtValor.getText()));
-                        List<Ofertas> lista;
-                        if(op==0)
+                        int total = Integer.parseInt(spnQuantidade1.getValue().toString());
+                        for(Ofertas ofe : lista)
                         {
-                            lista = new OfertasDAO().pesquisarTipoId(1, id_emp);
-                        }
-                        else
-                        {
-                            lista = new OfertasDAO().pesquisarTipoId(0, id_emp);
-                        }
-                        if(lista!=null && lista.size()>0)
-                        {
-                            for(Ofertas ofe : lista)
+                            if(total>0)
                             {
-                                if(ofe.getQuantidade() > 0 && pro.getQuantidade()!=0)
-                                {
-                                    if(ofe.getValor()==pro.getValor_uni())
-                                    {
-                                        if(op==0)
-                                        {
-                                            
-                                            if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
-                                            {
-                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
-                                                usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
-                                                usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                ofe.setQuantidade(ofe.getQuantidade()-Integer.parseInt(spnQuantidade1.getValue().toString()));
-                                                new OfertasDAO().atualizar(ofe);
-                                                List<Propriedade> lista6 = new PropriedadeDAO().pesquisarCpfId(ofe.getCpf_user(), op, 1);
-                                                for(Propriedade prop : lista6)//venda
-                                                {
-                                                    Propriedade prop2 = prop;
-                                                    if(prop2.getQuantidade()<=pro.getQuantidade())
-                                                    {
-                                                       pro.setQuantidade(pro.getQuantidade()-prop2.getQuantidade()); 
-                                                       Propriedade prop3 = pro;
-                                                       prop3.setQuantidade(prop2.getQuantidade());
-                                                       if(prop3.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop3, 0, 0);
-                                                        }
-                                                       
-                                                       prop2.setQuantidade(0);
-                                                    }
-                                                    else
-                                                    {
-                                                        prop2.setQuantidade(prop2.getQuantidade()-pro.getQuantidade());
-                                                        if(pro.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(pro, 0, 0);
-                                                        }
-                                                        
-                                                        pro.setQuantidade(0);
-                                                    }
-                                                    if(prop2.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop2, 2, 0);
-                                                        }
-                                                   
-                                                   
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
-                                                usu.setSaldo(usu.getSaldo()+(ofe.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
-                                                usu.setSaldo(usu.getSaldo()-(ofe.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                int quant = ofe.getQuantidade();
-                                                ofe.setQuantidade(0);
-                                                new OfertasDAO().atualizar(ofe);
-                                                List<Propriedade> lista7 = new PropriedadeDAO().pesquisarCpfId(ofe.getCpf_user(), op, 1);
-                                                for(Propriedade prop : lista7)//venda
-                                                {
-                                                    Propriedade prop2 = prop;
-                                                    if(prop2.getQuantidade()<=quant)
-                                                    {
-                                                       pro.setQuantidade(pro.getQuantidade()-quant); 
-                                                       Propriedade prop3 = pro;
-                                                       prop3.setQuantidade(prop2.getQuantidade());
-                                                       if(prop3.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop3, 0, 0);
-                                                        }
-                                                       
-                                                       prop2.setQuantidade(0);
-                                                    }
-                                                    else
-                                                    {
-                                                        prop2.setQuantidade(prop2.getQuantidade()-quant);
-                                                        Propriedade prop3 = pro;
-                                                        prop3.setQuantidade(quant);
-                                                        if(pro.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(pro, 0, 0);
-                                                        }
-                                                        
-                                                        pro.setQuantidade(pro.getQuantidade()-quant);
-                                                    }
-                                                    if(prop2.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop2, 2, 0);
-                                                        }
-                                                   
-                                                   
-                                                }
-                                            }
-                                            
-                                        }
-                                        else
-                                        {
-                                            
-                                           
-                                            if(ofe.getQuantidade() >= pro.getQuantidade() && pro.getQuantidade()!=0)
-                                            {
-                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
-                                                usu.setSaldo(usu.getSaldo()-(pro.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
-                                                usu.setSaldo(usu.getSaldo()+(pro.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                ofe.setQuantidade(ofe.getQuantidade()-Integer.parseInt(spnQuantidade1.getValue().toString()));
-                                                new OfertasDAO().atualizar(ofe);
-                                                List<Propriedade> lista6 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), op, 0);
-                                                for(Propriedade prop : lista6)//venda
-                                                {
-                                                    Propriedade prop2 = prop;
-                                                    if(prop2.getQuantidade()<=pro.getQuantidade())
-                                                    {
-                                                       pro.setQuantidade(pro.getQuantidade()-prop2.getQuantidade()); 
-                                                       Propriedade prop3 = new Propriedade();
-                                                       prop3.setCpf_user(ofe.getCpf_user());
-                                                       prop3.setId_empresa(pro.getId_empresa());
-                                                       prop3.setQuantidade(prop2.getQuantidade());
-                                                       prop3.setValor_uni(Double.parseDouble(txtValor.getText()));
-                                                       if(prop3.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop3, 0, 1);
-                                                        }
-                                                       
-                                                       prop2.setQuantidade(0);
-                                                    }
-                                                    else
-                                                    {
-                                                        prop2.setQuantidade(prop2.getQuantidade()-pro.getQuantidade());
-                                                        Propriedade prop3 = new Propriedade();
-                                                        prop3.setCpf_user(ofe.getCpf_user());
-                                                        prop3.setId_empresa(pro.getId_empresa());
-                                                        prop3.setQuantidade(pro.getQuantidade());
-                                                        prop3.setValor_uni(Double.parseDouble(txtValor.getText()));
-                                                        if(prop3.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop3, 0, 1);
-                                                        }
-                                                        pro.setQuantidade(0);
-                                                    }
-                                                    if(prop2.getQuantidade()!=0)
-                                                    {
-                                                        new PropriedadeDAO().veri(prop2, 2, 0);
-                                                    }
-                                                   
-                                                   
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Usuario usu = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
-                                                usu.setSaldo(usu.getSaldo()-(ofe.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                usu = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
-                                                usu.setSaldo(usu.getSaldo()+(ofe.getQuantidade()*Double.parseDouble(txtValor.getText())));
-                                                new UsuarioDAO().atualizar(usu,0);
-                                                int quant = ofe.getQuantidade();
-                                                ofe.setQuantidade(0);
-                                                new OfertasDAO().atualizar(ofe);
-                                                List<Propriedade> lista6 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), op, 0);
-                                                for(Propriedade prop : lista6)//venda
-                                                {
-                                                    Propriedade prop2 = prop;
-                                                    if(prop2.getQuantidade()<=quant)
-                                                    {
-                                                       pro.setQuantidade(pro.getQuantidade()-quant); 
-                                                       Propriedade prop3 = new Propriedade();
-                                                       prop3.setCpf_user(ofe.getCpf_user());
-                                                       prop3.setId_empresa(pro.getId_empresa());
-                                                       prop3.setQuantidade(prop2.getQuantidade());
-                                                       prop3.setValor_uni(Double.parseDouble(txtValor.getText()));
-                                                       if(prop3.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop3, 0, 1);
-                                                        }
-                                                       prop2.setQuantidade(0);
-                                                    }
-                                                    else
-                                                    {
-                                                        prop2.setQuantidade(prop2.getQuantidade()-quant);
-                                                        Propriedade prop3 = new Propriedade();
-                                                        prop3.setCpf_user(ofe.getCpf_user());
-                                                        prop3.setId_empresa(pro.getId_empresa());
-                                                        prop3.setQuantidade(quant);
-                                                        prop3.setValor_uni(Double.parseDouble(txtValor.getText()));
-                                                        if(prop3.getQuantidade()!=0)
-                                                        {
-                                                            new PropriedadeDAO().veri(prop3, 0, 1);
-                                                        }
-                                                        pro.setQuantidade(pro.getQuantidade()-quant);
-                                                    }
-                                                    if(prop2.getQuantidade()!=0)
-                                                    {
-                                                        new PropriedadeDAO().veri(prop2, 2, 0);
-                                                    }
-                                                   
-                                                   
-                                                }
-                                            }
-                                            
-                                        } 
-                                    }
-                                    
-                                }
                                 
+                                if(ofe.getQuantidade()<total)
+                                {
+                                    total=total-ofe.getQuantidade();
+                                    ofe.setQuantidade(0);
+                                    new OfertasDAO().atualizar(ofe);
+                                }
+                                else
+                                {
+                                    ofe.setQuantidade(ofe.getQuantidade()-total);
+                                    new OfertasDAO().atualizar(ofe);
+                                    total=0;
+                                }
 
+                                
                             }
-                            if(pro.getQuantidade()!=0)
+                            List<Propriedade> lista4 = new PropriedadeDAO().pesquisarCpfId(ofe.getCpf_user(), id_emp, 1);
+                            int total2 = Integer.parseInt(spnQuantidade1.getValue().toString()) - total;
+                            for(Propriedade pro : lista4)
                             {
-                                Ofertas ofefi = new Ofertas();
-                                ofefi.setCpf_user(pp.getDoc());
-                                ofefi.setId_empresa(id_emp);
-                                ofefi.setQuantidade(pro.getQuantidade());
-                                ofefi.setTipo(op);
-                                ofefi.setValor(Double.parseDouble(txtValor.getText()));
-                                new OfertasDAO().inserir(ofefi);
+                                if(total2>0)
+                                {
+
+                                    if(pro.getQuantidade()<total2)
+                                    {
+                                        total2=total2-pro.getQuantidade();
+                                        pro.setQuantidade(0);
+                                        new PropriedadeDAO().troca(pro, 1);
+                                    }
+                                    else
+                                    {
+                                        pro.setQuantidade(pro.getQuantidade()-total2);
+                                        new PropriedadeDAO().troca(pro, 1);
+                                        total2=0;
+                                    }
+                                }
+                                List<Propriedade> lista5 = new PropriedadeDAO().pesquisarCpfId(pp.getDoc(), id_emp, 0);
+                                int total3 = Integer.parseInt(spnQuantidade1.getValue().toString()) - total;
+                                for(Propriedade pro2 : lista5)
+                                {
+                                    if(total3>0)
+                                    {
+                                        
+                                        pro2.setQuantidade(pro.getQuantidade()+total3);
+                                        total3=0;
+                                        new PropriedadeDAO().troca(pro2, 0);
+                                    }
+                                    int total4 = Integer.parseInt(spnQuantidade1.getValue().toString()) - total;
+                                    double total44 = total4 * Double.parseDouble(txtValor.getText());
+                                    Usuario usuario1 = new UsuarioDAO().pesquisarCpf(ofe.getCpf_user(), 0);
+                                    Usuario usuario2 = new UsuarioDAO().pesquisarCpf(pp.getDoc(), 1);
+                                    if(op==0)
+                                    {
+                                        usuario1.setSaldo(usuario1.getSaldo()-total44);
+                                        usuario2.setSaldo(usuario2.getSaldo()+total44);
+                                    }
+                                    else
+                                    {
+                                        usuario1.setSaldo(usuario1.getSaldo()+total44);
+                                        usuario2.setSaldo(usuario2.getSaldo()-total44);
+                                    }
+                                    new UsuarioDAO().atualizar(usuario1, 1);
+                                    new UsuarioDAO().atualizar(usuario1, 0);
+                                }
                             }
-                            
-                            
                         }
-                        else
+                        if(total>0)
                         {
-                            if(pro.getQuantidade()!=0)
-                            {
-                                Ofertas ofefi = new Ofertas();
-                                ofefi.setCpf_user(pp.getDoc());
-                                ofefi.setId_empresa(id_emp);
-                                ofefi.setQuantidade(pro.getQuantidade());
-                                ofefi.setTipo(op);
-                                ofefi.setValor(Double.parseDouble(txtValor.getText()));
-                                new OfertasDAO().inserir(ofefi);
-                            }
+                            Ofertas oferta = new Ofertas();
+                            oferta.setCpf_user(pp.getDoc());
+                            oferta.setId_empresa(id_emp);
+                            oferta.setQuantidade(total);
+                            oferta.setTipo(op);
+                            oferta.setValor(Double.parseDouble(txtValor.getText()));
+                            new OfertasDAO().inserir(oferta);
                         }
                         JOptionPane.showMessageDialog(
                             null,
@@ -1459,7 +1278,6 @@ public class FormOpcoes extends javax.swing.JInternalFrame {
                         pp.atualizar( new String(txtSenha2.getPassword()));
                         this.dispose();
                     }
-
 
                 }
                 else

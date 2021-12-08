@@ -92,11 +92,11 @@ public class OfertasDAO {
             String SQL;
             if(tipo==0)
             {
-                SQL="select * from tb_ofertas where id_empresa=? and tipo=? order by valor desc";
+                SQL="select * from tb_ofertas where id_empresa=? and tipo=? and valor=? order by valor desc";
             }
             else
             {
-                SQL="select * from tb_ofertas where id_empresa=? and tipo=? order by valor asc";
+                SQL="select * from tb_ofertas where id_empresa=? and tipo=? and valor=? order by valor asc";
             }
             
 

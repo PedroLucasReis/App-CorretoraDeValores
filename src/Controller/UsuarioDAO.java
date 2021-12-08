@@ -146,7 +146,9 @@ public class UsuarioDAO {
             System.err.println("ERRO2: " + e.getMessage());
             return null;
         }
- 
+        finally{
+            Conect.desconectar(con);
+        }
     }
     
     public Usuario pesquisarCpf(String cpf, int tipo){
@@ -184,7 +186,9 @@ public class UsuarioDAO {
             System.err.println("ERRO2: " + e.getMessage());
             return null;
         }
- 
+        finally{
+            Conect.desconectar(con);
+        }
     }
     
     public List<Usuario> confere(){
@@ -223,7 +227,33 @@ public class UsuarioDAO {
         }
     }
 
-    
+    public List<Usuario> listar(){
+        try {
+            String SQL = "select * from tb_user";
+            cmd = con.prepareStatement(SQL);
+            
+            //executar a consulta
+            List<Usuario> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()){
+                Usuario fun = new Usuario();
+               
+               
+                fun.setNome(rs.getString("nome"));
+                fun.setEmail(rs.getString("email"));
+                fun.setTelefone(rs.getString("telefone"));
+                fun.setData(rs.getString("data_nasc"));
+                fun.setSaldo(rs.getDouble("saldo"));
+                lista.add(fun);
+            }
+            return lista;
+        } catch (SQLException e) {
+            System.err.println("ERRO: " + e.getMessage());
+            return null;
+        }finally{
+            Conect.desconectar(con);
+        }
+    }
        
     
     

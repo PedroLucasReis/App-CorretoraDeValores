@@ -137,9 +137,18 @@ public class PropriedadeDAO {
         }
     } 
     
-    public int troca(Propriedade pro){
+    public int troca(Propriedade pro, int tipo){
         try {
-            String SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
+             String SQL;
+            if(tipo==0)
+            {
+                SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=md5(?)";
+            }
+            else
+            {
+                SQL = "update tb_propriedade set quantidade=? where valor_uni=? and id_empresa=? and  cpf_user=?";
+            }
+            
             
             cmd = con.prepareStatement(SQL);
             cmd.setInt(1, pro.getQuantidade());
